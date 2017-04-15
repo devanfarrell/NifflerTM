@@ -8,6 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		0784FBB61E9EFE4600D16A67 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0784FBB51E9EFE4600D16A67 /* main.cpp */; };
+		07BEE3DC1EA194DB008E32AA /* TM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07BEE3DA1EA194DB008E32AA /* TM.cpp */; };
+		07BEE3DF1EA19502008E32AA /* Parser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07BEE3DD1EA19502008E32AA /* Parser.cpp */; };
+		07BEE3E21EA1951A008E32AA /* Validator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07BEE3E01EA1951A008E32AA /* Validator.cpp */; };
+		07BEE3E51EA19538008E32AA /* TM_Definition.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07BEE3E31EA19538008E32AA /* TM_Definition.cpp */; };
+		07BEE3E81EA19558008E32AA /* TM_Operation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07BEE3E61EA19558008E32AA /* TM_Operation.cpp */; };
+		07BEE3EB1EA19577008E32AA /* Transition_Processor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07BEE3E91EA19577008E32AA /* Transition_Processor.cpp */; };
+		07BEE3EE1EA19584008E32AA /* Tape.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07BEE3EC1EA19584008E32AA /* Tape.cpp */; };
+		07BEE3F11EA19596008E32AA /* Input_Strings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07BEE3EF1EA19596008E32AA /* Input_Strings.cpp */; };
+		07BEE3F41EA195AC008E32AA /* Transition.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07BEE3F21EA195AC008E32AA /* Transition.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +34,25 @@
 /* Begin PBXFileReference section */
 		0784FBB21E9EFE4600D16A67 /* NifflerTM */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = NifflerTM; sourceTree = BUILT_PRODUCTS_DIR; };
 		0784FBB51E9EFE4600D16A67 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		07BEE3DA1EA194DB008E32AA /* TM.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TM.cpp; sourceTree = "<group>"; };
+		07BEE3DB1EA194DB008E32AA /* TM.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TM.hpp; sourceTree = "<group>"; };
+		07BEE3DD1EA19502008E32AA /* Parser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Parser.cpp; sourceTree = "<group>"; };
+		07BEE3DE1EA19502008E32AA /* Parser.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Parser.hpp; sourceTree = "<group>"; };
+		07BEE3E01EA1951A008E32AA /* Validator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Validator.cpp; sourceTree = "<group>"; };
+		07BEE3E11EA1951A008E32AA /* Validator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Validator.hpp; sourceTree = "<group>"; };
+		07BEE3E31EA19538008E32AA /* TM_Definition.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TM_Definition.cpp; sourceTree = "<group>"; };
+		07BEE3E41EA19538008E32AA /* TM_Definition.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TM_Definition.hpp; sourceTree = "<group>"; };
+		07BEE3E61EA19558008E32AA /* TM_Operation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TM_Operation.cpp; sourceTree = "<group>"; };
+		07BEE3E71EA19558008E32AA /* TM_Operation.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TM_Operation.hpp; sourceTree = "<group>"; };
+		07BEE3E91EA19577008E32AA /* Transition_Processor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Transition_Processor.cpp; sourceTree = "<group>"; };
+		07BEE3EA1EA19577008E32AA /* Transition_Processor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Transition_Processor.hpp; sourceTree = "<group>"; };
+		07BEE3EC1EA19584008E32AA /* Tape.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tape.cpp; sourceTree = "<group>"; };
+		07BEE3ED1EA19584008E32AA /* Tape.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Tape.hpp; sourceTree = "<group>"; };
+		07BEE3EF1EA19596008E32AA /* Input_Strings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Input_Strings.cpp; sourceTree = "<group>"; };
+		07BEE3F01EA19596008E32AA /* Input_Strings.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Input_Strings.hpp; sourceTree = "<group>"; };
+		07BEE3F21EA195AC008E32AA /* Transition.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Transition.cpp; sourceTree = "<group>"; };
+		07BEE3F31EA195AC008E32AA /* Transition.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Transition.hpp; sourceTree = "<group>"; };
+		07BEE3F51EA2C4B8008E32AA /* Direction.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Direction.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +86,25 @@
 			isa = PBXGroup;
 			children = (
 				0784FBB51E9EFE4600D16A67 /* main.cpp */,
+				07BEE3DA1EA194DB008E32AA /* TM.cpp */,
+				07BEE3DB1EA194DB008E32AA /* TM.hpp */,
+				07BEE3DD1EA19502008E32AA /* Parser.cpp */,
+				07BEE3DE1EA19502008E32AA /* Parser.hpp */,
+				07BEE3E01EA1951A008E32AA /* Validator.cpp */,
+				07BEE3E11EA1951A008E32AA /* Validator.hpp */,
+				07BEE3E31EA19538008E32AA /* TM_Definition.cpp */,
+				07BEE3E41EA19538008E32AA /* TM_Definition.hpp */,
+				07BEE3F21EA195AC008E32AA /* Transition.cpp */,
+				07BEE3F31EA195AC008E32AA /* Transition.hpp */,
+				07BEE3E61EA19558008E32AA /* TM_Operation.cpp */,
+				07BEE3E71EA19558008E32AA /* TM_Operation.hpp */,
+				07BEE3E91EA19577008E32AA /* Transition_Processor.cpp */,
+				07BEE3EA1EA19577008E32AA /* Transition_Processor.hpp */,
+				07BEE3EC1EA19584008E32AA /* Tape.cpp */,
+				07BEE3ED1EA19584008E32AA /* Tape.hpp */,
+				07BEE3EF1EA19596008E32AA /* Input_Strings.cpp */,
+				07BEE3F01EA19596008E32AA /* Input_Strings.hpp */,
+				07BEE3F51EA2C4B8008E32AA /* Direction.hpp */,
 			);
 			path = NifflerTM;
 			sourceTree = "<group>";
@@ -119,7 +166,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07BEE3E21EA1951A008E32AA /* Validator.cpp in Sources */,
+				07BEE3DC1EA194DB008E32AA /* TM.cpp in Sources */,
+				07BEE3EB1EA19577008E32AA /* Transition_Processor.cpp in Sources */,
+				07BEE3EE1EA19584008E32AA /* Tape.cpp in Sources */,
+				07BEE3F11EA19596008E32AA /* Input_Strings.cpp in Sources */,
+				07BEE3DF1EA19502008E32AA /* Parser.cpp in Sources */,
+				07BEE3F41EA195AC008E32AA /* Transition.cpp in Sources */,
 				0784FBB61E9EFE4600D16A67 /* main.cpp in Sources */,
+				07BEE3E81EA19558008E32AA /* TM_Operation.cpp in Sources */,
+				07BEE3E51EA19538008E32AA /* TM_Definition.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -246,6 +302,7 @@
 				0784FBBB1E9EFE4600D16A67 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
