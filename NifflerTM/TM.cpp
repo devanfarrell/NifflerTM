@@ -19,57 +19,59 @@ bool TM::load(std::string fileName)
 {
     
     std::ifstream rawDefinitionFile;
+    std::cout << fileName << std::endl;
     rawDefinitionFile.open(fileName);
     
-    
-    if(rawDefinitionFile.is_open())
+    if(!hasLoaded)
     {
-        
-        
-        if (rawDefinitionFile.good())
+        if(rawDefinitionFile.is_open())
         {
-            Parser parser;
-            Validator * validator;
-            validator = parser.definitionParse(&rawDefinitionFile);
             
             
-            if (validator->isValidDefinition())
+            if (rawDefinitionFile.good())
             {
-                TM_Definition * tmDefinition;
-                Input_Strings * inputStrings;
+                Parser parser;
+                Validator * validator;
+                validator = parser.definitionParse(&rawDefinitionFile);
                 
                 
-                tmDefinition = validator->constructDefinition();
-                inputStrings = validator->constructInputStrings();
-                validator->validateInputFile(fileName);
-                
-                tmOperation = new TM_Operation(validator, tmDefinition, inputStrings, fileName);
-                
-                
-                
-                
-                hasLoaded = true;
+                if (validator->isValidDefinition())
+                {
+                    TM_Definition * tmDefinition;
+                    Input_Strings * inputStrings;
+                    
+                    
+                    tmDefinition = validator->constructDefinition();
+                    inputStrings = validator->constructInputStrings();
+                    validator->validateInputFile(fileName);
+                    
+                    tmOperation = new TM_Operation(validator, tmDefinition, inputStrings, fileName);
+                    
+                    
+                    hasLoaded = true;
+                }
+                else
+                {
+                    delete validator;
+                }
             }
             else
             {
-                delete validator;
+                std::cout << "ERROR: File is empty or corrupted" <<  std::endl;
+                hasLoaded = false;
             }
         }
         else
         {
-            std::cout << "ERROR: File is empty or corrupted" <<  std::endl;
+            std::cout << "ERROR: Unable to open file '" << fileName << ".def'" << std::endl;
             hasLoaded = false;
         }
+        
+        rawDefinitionFile.close();
     }
-    else
-    {
-        std::cout << "ERROR: Unable to open file '" << fileName << ".def'" << std::endl;
-        hasLoaded = false;
-    }
-    
-    
     return hasLoaded;
 }
+
 void TM::initiate()
 {
     

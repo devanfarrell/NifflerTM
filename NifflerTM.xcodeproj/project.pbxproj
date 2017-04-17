@@ -32,6 +32,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		074B5A2A1EA582D100066E3D /* tm.def */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; name = tm.def; path = ../../../../../../../../NifflerTM/NifflerTM/tm.def; sourceTree = BUILT_PRODUCTS_DIR; };
+		074B5A2C1EA5841100066E3D /* NifflerTM */ = {isa = PBXFileReference; lastKnownFileType = folder; path = NifflerTM; sourceTree = "<group>"; };
 		0784FBB21E9EFE4600D16A67 /* NifflerTM */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = NifflerTM; sourceTree = BUILT_PRODUCTS_DIR; };
 		0784FBB51E9EFE4600D16A67 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		07BEE3DA1EA194DB008E32AA /* TM.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TM.cpp; sourceTree = "<group>"; };
@@ -66,11 +68,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		074B5A2B1EA5839C00066E3D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				074B5A2C1EA5841100066E3D /* NifflerTM */,
+				074B5A2A1EA582D100066E3D /* tm.def */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		0784FBA91E9EFE4600D16A67 = {
 			isa = PBXGroup;
 			children = (
 				0784FBB41E9EFE4600D16A67 /* NifflerTM */,
 				0784FBB31E9EFE4600D16A67 /* Products */,
+				074B5A2B1EA5839C00066E3D /* Resources */,
 			);
 			sourceTree = "<group>";
 		};

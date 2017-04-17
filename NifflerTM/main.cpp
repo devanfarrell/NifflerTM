@@ -9,12 +9,13 @@
 #include "TM.hpp"
 
 #include <iostream>
+#define FILE "/Users/devan/NifflerTM/NifflerTM/tm.def"
 
 int main(int argc, const char * argv[]) {
   bool openAndValid;
   TM * tm = new TM();
   
-  openAndValid = tm->load("file name");
+  openAndValid = tm->load(FILE);
   
   if(openAndValid)
   {

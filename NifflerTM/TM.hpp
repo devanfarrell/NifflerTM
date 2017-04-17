@@ -26,6 +26,10 @@ private: //attributes
     
     
 public: //methods
+    TM()
+    {
+        hasLoaded = false;
+    }
     
     ~TM()
     {
