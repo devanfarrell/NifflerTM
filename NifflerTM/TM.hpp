@@ -26,6 +26,15 @@ private: //attributes
     
     
 public: //methods
+    
+    ~TM()
+    {
+        if(hasLoaded)
+        {
+            delete tmOperation;
+        }
+    }
+    
     bool load(std::string fileName);
     void initiate();
 };

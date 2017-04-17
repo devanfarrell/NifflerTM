@@ -32,7 +32,7 @@ private: // attributes
     std::vector<int> keywordOrder;
 
     
-private:
+private: // methods
     
     void descriptionParse(std::__1::ifstream * definitionFile);
     void statesParse(std::__1::ifstream * definitionFile);
@@ -45,7 +45,8 @@ private:
     void keywordOrderParse(std::__1::ifstream * definitionFile);
 
     
-public:
+public: // methods
+    
     Validator * definitionParse(std::__1::ifstream * definitionFile);
 
 };
