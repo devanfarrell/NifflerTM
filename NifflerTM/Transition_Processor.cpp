@@ -15,7 +15,7 @@ void Transition_Processor::viewInstantaneousDescription()
 
 bool Transition_Processor::isOperating()
 {
-    return true;
+    return false;
 }
 void Transition_Processor::performTransitions()
 {

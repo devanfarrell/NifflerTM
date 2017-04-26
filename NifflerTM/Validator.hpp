@@ -67,6 +67,27 @@ public: // methods
     Input_Strings * constructInputStrings();
     void validateInputFile(std::string fileName);
     void testInputString(std::string inputString);
+  
+  
+  //////////validations
+private:
+  int stringsToTransitions();
+  
+  int statesValidation();
+  int inputAlphabetValidation();
+  int statesMultiplicityValidation();
+  int inputAlphabetMultiplicityValidation();
+  //TODO errors += TMDefinition->inputAlphabetIllegalCharacterValidation();
+  int tapeAlphabetMultiplicityValidation();
+  //TODO errors += TMDefinition->tapeAlphabetIllegalCharacterValidation();
+  int inputInTapeValidation();
+  int initialStateMultiplicityValidation();
+  int initialStateInStatesValidation();
+  int blankMultiplicityValidation();
+  int blankNotInInputAlphabetValidation();
+  int blankInTapeAlphabetValidation();
+  int finalStatesMultiplicityValidation();
+  int finalStatesinStatesValidation();
     
 };
 

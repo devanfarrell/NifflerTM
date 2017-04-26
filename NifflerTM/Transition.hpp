@@ -27,7 +27,8 @@ private:
     
 public:
     
-    
+  Transition(std::string currentState_in, std::string readCharacter_in, std::string writeCharacter_in, std::string destinationState_in, std::string move_in);
+  
     std::string getCurrentState() const;
     char getReadCharacter() const;
     char getWriteCharacter() const;
