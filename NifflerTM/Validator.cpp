@@ -7,6 +7,7 @@
 //
 
 #include "Validator.hpp"
+#include "TM_Definition.hpp"
 
 
 bool Validator::isValidDefinition()
@@ -16,8 +17,10 @@ bool Validator::isValidDefinition()
 
 TM_Definition * Validator::constructDefinition()
 {
-    return NULL;
+  TM_Definition * tmDefinition = new TM_Definition(description, states,inputAlphabet, tapeAlphabet, transitionFunction, initialState, blankCharacter, finalStates);
+  return tmDefinition;
 }
+
 Input_Strings * Validator::constructInputStrings()
 {
     return NULL;

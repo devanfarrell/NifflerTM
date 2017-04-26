@@ -23,7 +23,7 @@ private: //attributes
     std::vector<char> inputAlphabet;
     std::vector<char> tapeAlphabet;
     std::vector<Transition> transitionFunction;
-    std::vector<std::string> initialState;
+    std::string initialState;
     char blankCharacter;
     std::vector<std::string> finalStates;
     
@@ -33,24 +33,14 @@ public: //methods
     
     ///// begin contructor /////
     TM_Definition(
-              std::vector<std::string> description,
-              std::vector<std::string> states,
-              std::vector<std::string> inputAlphabet,
-              std::vector<std::string> tapeAlphabet,
-              std::vector<Transition> transitionFunction,
-              std::vector<std::string> initialState,
-              std::vector<std::string> blankCharacter,
-              std::vector<std::string> finalStates):
-    description(description),
-    states(states),
-    transitionFunction(transitionFunction),
-    initialState(initialState),
-    finalStates(finalStates)
-    {
-       // inputAlphabet(inputAlphabet),
-       // tapeAlphabet(tapeAlphabet),
-       // blankCharacter(blankCharacter),
-    }
+                  std::vector<std::string> description_in,
+                  std::vector<std::string> states_in,
+                  std::vector<std::string> inputAlphabet_in,
+                  std::vector<std::string> tapeAlphabet_in,
+                  std::vector<Transition> transitionFunction_in,
+                  std::vector<std::string> initialState_in,
+                  std::vector<std::string> blankCharacter_in,
+                  std::vector<std::string> finalStates_in);
     ///// end constructor /////
     
     

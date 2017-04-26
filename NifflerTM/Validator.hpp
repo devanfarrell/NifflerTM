@@ -39,26 +39,25 @@ public: // methods
     
     ////////////// begin constructor /////////////
     Validator(
-              std::vector<std::string> description,
-              std::vector<std::string> states,
-              std::vector<std::string> inputAlphabet,
-              std::vector<std::string> tapeAlphabet,
-              std::vector<std::string> transitionFunctionIn,
-              std::vector<std::string> initialState,
-              std::vector<std::string> blankCharacter,
-              std::vector<std::string> finalStates,
-              std::vector<int> keywordOrder):
-    description(description),
-    states(states),
-    inputAlphabet(inputAlphabet),
-    tapeAlphabet(tapeAlphabet),
-    transitionFunctionStrings(transitionFunctionIn),
-    initialState(initialState),
-    blankCharacter(blankCharacter),
-    finalStates(finalStates),
-    keywordOrder(keywordOrder)
+              std::vector<std::string> description_in,
+              std::vector<std::string> states_in,
+              std::vector<std::string> inputAlphabet_in,
+              std::vector<std::string> tapeAlphabet_in,
+              std::vector<std::string> transitionFunction_in,
+              std::vector<std::string> initialState_in,
+              std::vector<std::string> blankCharacter_in,
+              std::vector<std::string> finalStates_in,
+              std::vector<int> keywordOrder_in):
+    description(description_in),
+    states(states_in),
+    inputAlphabet(inputAlphabet_in),
+    tapeAlphabet(tapeAlphabet_in),
+    transitionFunctionStrings(transitionFunction_in),
+    initialState(initialState_in),
+    blankCharacter(blankCharacter_in),
+    finalStates(finalStates_in),
+    keywordOrder(keywordOrder_in)
     {
-        
     }
     ////////////// end constructor /////////////
     
