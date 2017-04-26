@@ -25,7 +25,7 @@ private: // attributes
     std::vector<std::string> states;
     std::vector<std::string> inputAlphabet;
     std::vector<std::string> tapeAlphabet;
-    std::vector<Transition> transitionFunction;
+    std::vector< std::string> transitionFunction;
     std::vector<std::string> initialState;
     std::vector<std::string> blankCharacter;
     std::vector<std::string> finalStates;

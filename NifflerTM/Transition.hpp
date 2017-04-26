@@ -27,6 +27,7 @@ private:
     
 public:
     
+    
     std::string getCurrentState() const;
     char getReadCharacter() const;
     char getWriteCharacter() const;

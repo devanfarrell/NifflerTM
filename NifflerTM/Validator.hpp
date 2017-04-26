@@ -28,6 +28,7 @@ private: // attributes
     std::vector<std::string> states;
     std::vector<std::string> inputAlphabet;
     std::vector<std::string> tapeAlphabet;
+    std::vector<std::string> transitionFunctionStrings;
     std::vector<Transition> transitionFunction;
     std::vector<std::string> initialState;
     std::vector<std::string> blankCharacter;
@@ -42,7 +43,7 @@ public: // methods
               std::vector<std::string> states,
               std::vector<std::string> inputAlphabet,
               std::vector<std::string> tapeAlphabet,
-              std::vector<Transition> transitionFunction,
+              std::vector<std::string> transitionFunctionIn,
               std::vector<std::string> initialState,
               std::vector<std::string> blankCharacter,
               std::vector<std::string> finalStates,
@@ -51,7 +52,7 @@ public: // methods
     states(states),
     inputAlphabet(inputAlphabet),
     tapeAlphabet(tapeAlphabet),
-    transitionFunction(transitionFunction),
+    transitionFunctionStrings(transitionFunctionIn),
     initialState(initialState),
     blankCharacter(blankCharacter),
     finalStates(finalStates),
