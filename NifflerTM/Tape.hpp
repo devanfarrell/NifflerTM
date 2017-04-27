@@ -1,17 +1,9 @@
-//
-//  Tape.hpp
-//  NifflerTM
-//
-//  Created by Devan Farrell on 4/14/17.
-//  Copyright © 2017 Devan Farrell. All rights reserved.
-//
-
 #ifndef Tape_hpp
 #define Tape_hpp
 
 #include "Direction.hpp"
 
-#include <String>
+#include <string>
 
 class Tape
 {

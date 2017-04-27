@@ -1,11 +1,3 @@
-//
-//  TM_Operation.hpp
-//  NifflerTM
-//
-//  Created by Devan Farrell on 4/14/17.
-//  Copyright © 2017 Devan Farrell. All rights reserved.
-//
-
 #ifndef TM_Operation_hpp
 #define TM_Operation_hpp
 
@@ -18,9 +10,8 @@
 
 class TM_Operation
 {
-
-private:
-    
+private: //attributes
+    std::string fileName;
     Validator * validator;
     Transition_Processor * transitionProcessor;
     Input_Strings * inputStrings;
@@ -28,6 +19,21 @@ private:
     
     
 public:
+    TM_Operation(Validator * validator, TM_Definition * tmDefinition, Input_Strings * inputStrings, std::string fileName)
+    {
+        this->validator = validator;
+        this->tmDefinition = tmDefinition;
+        this->inputStrings = inputStrings;
+        this->fileName = fileName;
+        transitionProcessor = new Transition_Processor(inputStrings, tmDefinition);
+    }
+    ~TM_Operation()
+    {
+        delete validator;
+        delete transitionProcessor;
+        delete inputStrings;
+        delete tmDefinition;
+    }
     
     void deleteStr();
     void exit();

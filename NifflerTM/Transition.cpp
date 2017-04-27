@@ -1,11 +1,3 @@
-//
-//  Transition.cpp
-//  NifflerTM
-//
-//  Created by Devan Farrell on 4/14/17.
-//  Copyright © 2017 Devan Farrell. All rights reserved.
-//
-
 #include "Transition.hpp"
 #include "Direction.hpp"
 

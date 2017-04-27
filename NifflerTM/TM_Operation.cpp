@@ -1,11 +1,3 @@
-//
-//  TM_Operation.cpp
-//  NifflerTM
-//
-//  Created by Devan Farrell on 4/14/17.
-//  Copyright © 2017 Devan Farrell. All rights reserved.
-//
-
 #include "TM_Operation.hpp"
 
 void TM_Operation::deleteStr()
@@ -50,5 +42,5 @@ void TM_Operation::truncate()
 }
 void TM_Operation::view()
 {
-    
+  tmDefinition->view_definition();
 }
