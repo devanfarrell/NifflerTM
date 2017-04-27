@@ -1,11 +1,3 @@
-//
-//  Validator.cpp
-//  NifflerTM
-//
-//  Created by Devan Farrell on 4/14/17.
-//  Copyright © 2017 Devan Farrell. All rights reserved.
-//
-
 #include "Validator.hpp"
 #include "TM_Definition.hpp"
 
@@ -21,10 +13,10 @@ bool Validator::isValidDefinition()
   errors += statesValidation();
   errors += statesDuplicityValidation();
   
-  errors += inputAlphabetValidation(); //TODO Check for illegal characters
+  errors += inputAlphabetValidation();
   errors += inputAlphabetDuplicityValidation();
 
-  errors += tapeAlphabetValidation(); //TODO Check for illegal characters
+  errors += tapeAlphabetValidation();
   errors += tapeAlphabetDuplicityValidation();
   
   errors += initialStateMultiplicityValidation();
@@ -40,7 +32,6 @@ bool Validator::isValidDefinition()
 
   errors += basicTransitionTest();
   
-  // std::cout << errors << std::endl;
   
   if (!errors) valid = true;
   else valid = false;

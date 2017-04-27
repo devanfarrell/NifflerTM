@@ -1,10 +1,3 @@
-//
-//  Parser.hpp
-//  NifflerTM
-//
-//  Created by Devan Farrell on 4/14/17.
-//  Copyright © 2017 Devan Farrell. All rights reserved.
-//
 
 #ifndef Parser_hpp
 #define Parser_hpp

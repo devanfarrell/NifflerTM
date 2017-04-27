@@ -1,14 +1,4 @@
-//
-//  Parser.cpp
-//  NifflerTM
-//
-//  Created by Devan Farrell on 4/14/17.
-//  Copyright © 2017 Devan Farrell. All rights reserved.
-//
-
 #include "Parser.hpp"
-//can remove iostream after testing
-#include <iostream>
 
 void Parser::descriptionParse(std::__1::ifstream * definitionFile)
 {

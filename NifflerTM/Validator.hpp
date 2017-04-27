@@ -1,11 +1,3 @@
-//
-//  Validator.hpp
-//  NifflerTM
-//
-//  Created by Devan Farrell on 4/14/17.
-//  Copyright © 2017 Devan Farrell. All rights reserved.
-//
-
 #ifndef Validator_hpp
 #define Validator_hpp
 
@@ -89,6 +81,7 @@ private:
   int finalStatesinStatesValidation();
   
   int basicTransitionTest();
+  //if there is no r or l as tape characters or states, do advancedTransitionTest to remove mojar cascading errors
 };
 
 #endif /* Validator_hpp */

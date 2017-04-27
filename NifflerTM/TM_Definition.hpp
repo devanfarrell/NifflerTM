@@ -1,11 +1,3 @@
-//
-//  TM_Definition.hpp
-//  NifflerTM
-//
-//  Created by Devan Farrell on 4/14/17.
-//  Copyright © 2017 Devan Farrell. All rights reserved.
-//
-
 #ifndef TM_Definition_hpp
 #define TM_Definition_hpp
 

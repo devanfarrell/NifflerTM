@@ -1,11 +1,3 @@
-//
-//  Transition.hpp
-//  NifflerTM
-//
-//  Created by Devan Farrell on 4/14/17.
-//  Copyright © 2017 Devan Farrell. All rights reserved.
-//
-
 #ifndef Transition_hpp
 #define Transition_hpp
 

@@ -1,18 +1,9 @@
-//
-//  TM.hpp
-//  NifflerTM
-//
-//  Created by Devan Farrell on 4/14/17.
-//  Copyright © 2017 Devan Farrell. All rights reserved.
-//
-
 #ifndef TM_hpp
 #define TM_hpp
 
 #include "TM_Operation.hpp"
 
 #include <string>
-
 
 class TM
 {
