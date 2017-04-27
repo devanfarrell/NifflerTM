@@ -47,7 +47,7 @@ TM_Definition * Validator::constructDefinition()
 
 Input_Strings * Validator::constructInputStrings()
 {
-    return NULL;
+    return new Input_Strings;
 }
 void Validator::validateInputFile(std::string fileName)
 {
@@ -311,22 +311,6 @@ int Validator::finalStatesinStatesValidation()
   }
   return errors;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

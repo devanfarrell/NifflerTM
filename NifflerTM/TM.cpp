@@ -73,7 +73,7 @@ void TM::commandLogic()
     std::cout << "Command: ";
     {
       std::string input;
-      std::cin >> input;
+      std::getline(std::cin, input);
       std::cout << std::endl;
       if(input == "d" || input == "D")       tmOperation->deleteStr();
       else if(input == "x" || input == "X")  exit = true;
@@ -87,7 +87,6 @@ void TM::commandLogic()
       else if(input == "t" || input == "T")  tmOperation->truncate();
       else if(input == "v" || input == "V")  tmOperation->view();
       else                                   std::cout << "'" << input << "' is not a valid input" << std::endl;
-      std::cin.clear();
     }
   }
 }

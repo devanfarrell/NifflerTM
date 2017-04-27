@@ -6,11 +6,15 @@
 void TM_Operation::deleteStr()
 {
   int index = 0;
-  getInt(1, index, "Input string number:");
+  getInt(1, index, "Input string number: ");
     if(inputStrings->isString(index))
        {
          inputStrings->deleteString(index);
        }
+    else
+    {
+      std::cout << "Error: string not in list" << std::endl;
+    }
 }
 void TM_Operation::help()
 {
@@ -60,22 +64,23 @@ void TM_Operation::view()
   tmDefinition->view_definition();
 }
        
-bool TM_Operation::getInt(int min, int&result, std::string prompt)
+bool TM_Operation::getPosInt( int&result, std::string prompt)
 {
-  int ret_integer;
-  std::string str_number;
-
+  int ret_value;
+  std::string strNumber;
+  std::string input;
   std::cout << prompt;
-  std::getline(std::cin, str_number); //get string input
-  std::stringstream convert(str_number); //turns the string into a stream
-    
-  //checks for complete conversion to integer and checks for minimum value
-  if(convert >> ret_integer && !(convert >> str_number) && ret_integer >= min)
+  std::getline(std::cin, input); //get string input
+  std::cout << input << std::endl;
+  std::istringstream buffer(input); //turns the input into a stream
+  if(buffer >> ret_value && std::to_string(ret_value) == input && ret_value > 0)
   {
-    result = ret_integer;
+    result = ret_value;
     return true;
   }
-  std::cin.clear(); //just in case an error occurs with cin (eof(), etc)
-  std::cerr << "Input must be >= " << min << std::endl;
+  else
+  {
+  std::cout << "Error: input was not a positive integer" << std::endl;
   return false;
+  }
 }

@@ -14,6 +14,7 @@ bool Input_Strings::deleteString(int index)
   if(isString(index))
   {
     inputStrings.erase(inputStrings.begin()+index);
+    std::cout << "Input string deleted!" << std::endl;
   }
   return true;
 }

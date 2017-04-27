@@ -18,7 +18,7 @@ private: //attributes
     TM_Definition * tmDefinition;
     
 private: //methods
-  bool getInt(int min, int&result, std::string prompt);
+  bool getPosInt( int&result, std::string prompt);
   
 public:
     TM_Operation(Validator * validator, TM_Definition * tmDefinition, Input_Strings * inputStrings, std::string fileName)
