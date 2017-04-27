@@ -4,7 +4,7 @@ void Tape::initialize(std::string inputString)
 {
     
 }
-void Tape::update(char writeCharacter, direction moveDirection)
+void Tape::update(char writeCharacter, Direction moveDirection)
 {
     
 }

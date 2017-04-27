@@ -87,6 +87,7 @@ void TM::commandLogic()
       else if(input == "t" || input == "T")  tmOperation->truncate();
       else if(input == "v" || input == "V")  tmOperation->view();
       else                                   std::cout << "'" << input << "' is not a valid input" << std::endl;
+      std::cin.clear();
     }
   }
 }

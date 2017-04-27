@@ -17,7 +17,9 @@ private: //attributes
     Input_Strings * inputStrings;
     TM_Definition * tmDefinition;
     
-    
+private: //methods
+  bool getInt(int min, int&result, std::string prompt);
+  
 public:
     TM_Operation(Validator * validator, TM_Definition * tmDefinition, Input_Strings * inputStrings, std::string fileName)
     {
@@ -36,7 +38,6 @@ public:
     }
     
     void deleteStr();
-    void exit();
     void help();
     void insert();
     void list();

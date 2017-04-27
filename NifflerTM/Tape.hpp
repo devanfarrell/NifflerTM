@@ -13,7 +13,7 @@ private: //attributes
     
 public: //methods
     void initialize(std::string inputString);
-    void update(char writeCharacter, direction moveDirection);
+    void update(char writeCharacter, Direction moveDirection);
     char readCharacter();
     bool isFirstCell();
     bool isLastCell();

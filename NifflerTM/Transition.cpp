@@ -24,7 +24,7 @@ std::string Transition::getDestinationState() const
     return destinationState;
 }
 
-direction Transition::getDirection() const
+Direction Transition::getDirection() const
 {
     return move;
 }

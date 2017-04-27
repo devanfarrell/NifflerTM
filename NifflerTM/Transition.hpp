@@ -14,12 +14,12 @@ private:
     char readCharacter;
     char writeCharacter;
     std::string destinationState;
-    direction move;
+    Direction move;
     
     
 public:
   //copy constructor
-  Transition(const std::string& currentState_in, char& readCharacter_in, char& writeCharacter_in, std::string& destinationState_in, direction& move_in):
+  Transition(const std::string& currentState_in, char& readCharacter_in, char& writeCharacter_in, std::string& destinationState_in, Direction& move_in):
   currentState(currentState_in),
   readCharacter(readCharacter_in),
   writeCharacter(writeCharacter_in),
@@ -31,7 +31,7 @@ public:
     char getReadCharacter() const;
     char getWriteCharacter() const;
     std::string getDestinationState() const;
-    direction getDirection() const;
+    Direction getDirection() const;
     
 };
 
