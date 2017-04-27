@@ -9,7 +9,7 @@
 #ifndef Transition_hpp
 #define Transition_hpp
 
-#include "direction.hpp"
+#include "Direction.hpp"
 
 #include <string>
 
