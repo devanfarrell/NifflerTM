@@ -12,18 +12,13 @@
 #define FILE "/Users/devan/NifflerTM/NifflerTM/tm.def"
 
 int main(int argc, const char * argv[]) {
-  bool openAndValid;
-  TM * tm = new TM();
-  
-  openAndValid = tm->load(FILE);
+  TM tm;
+  bool openAndValid = tm.load(FILE);
   
   if(openAndValid)
   {
     std::cout << "Successfully loaded!" << std::endl;
-    tm->initiate();
+    tm.initiate();
   }
-  
-  delete tm;
-    
     return 0;
 }

@@ -26,8 +26,25 @@ private:
     
     
 public:
-    
-  Transition(std::string currentState_in, std::string readCharacter_in, std::string writeCharacter_in, std::string destinationState_in, std::string move_in);
+    //regular constructor
+  /*
+  Transition(std::string currentState_in, char readCharacter_in, char writeCharacter_in, std::string destinationState_in, direction move_in):
+  currentState(currentState_in),
+  readCharacter(readCharacter_in),
+  writeCharacter(writeCharacter_in),
+  destinationState(destinationState_in),
+  move(move_in)
+  {}
+   */
+  
+  //copy constructor
+  Transition(const std::string& currentState_in, char& readCharacter_in, char& writeCharacter_in, std::string& destinationState_in, direction& move_in):
+  currentState(currentState_in),
+  readCharacter(readCharacter_in),
+  writeCharacter(writeCharacter_in),
+  destinationState(destinationState_in),
+  move(move_in)
+  {}
   
     std::string getCurrentState() const;
     char getReadCharacter() const;

@@ -28,6 +28,7 @@ private: //attributes
 public: //methods
     TM()
     {
+      tmOperation = NULL;
         hasLoaded = false;
     }
     

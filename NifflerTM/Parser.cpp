@@ -7,6 +7,8 @@
 //
 
 #include "Parser.hpp"
+//can remove iostream after testing
+#include <iostream>
 
 void Parser::descriptionParse(std::__1::ifstream * definitionFile)
 {
@@ -405,7 +407,7 @@ void Parser::finalStatesParse(std::__1::ifstream * definitionFile)
       //This section is used because it will make error checking more thorough in the other sections even though the entire parsing will be thrown away because of this error. The error statement will be caught in validater
       foundEndOfStates++;
     }
-    else
+    else if( (int)unmanipulatedStr[0] != 0)
     {
       finalStates.push_back(unmanipulatedStr);
     }

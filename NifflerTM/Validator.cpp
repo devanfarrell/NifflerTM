@@ -14,8 +14,38 @@
 
 bool Validator::isValidDefinition()
 {
-  stringsToTransitions();
-  return true;
+  int errors = 0;
+  bool valid;
+  
+  
+  errors += statesValidation();
+  errors += statesDuplicityValidation();
+  
+  errors += inputAlphabetValidation(); //TODO Check for illegal characters
+  errors += inputAlphabetDuplicityValidation();
+
+  errors += tapeAlphabetValidation(); //TODO Check for illegal characters
+  errors += tapeAlphabetDuplicityValidation();
+  
+  errors += initialStateMultiplicityValidation();
+  errors += blankMultiplicityValidation();
+  
+  errors += finalStatesDuplicityValidation();
+  
+  errors += inputInTapeValidation();
+  errors += initialStateInStatesValidation();
+  errors += blankNotInInputAlphabetValidation();
+  errors += blankInTapeAlphabetValidation();
+  errors += finalStatesinStatesValidation();
+
+  errors += basicTransitionTest();
+  
+  // std::cout << errors << std::endl;
+  
+  if (!errors) valid = true;
+  else valid = false;
+  
+  return valid;
 }
 
 TM_Definition * Validator::constructDefinition()
@@ -36,27 +66,27 @@ void Validator::testInputString(std::string inputString)
 {
     
 }
+
+
+
+
 // begin validations
 
-int Validator::stringsToTransitions()
+int Validator::statesValidation()
 {
-  int errors;
-  
-  for(std::string::size_type i = 0; i < transitionFunctionStrings.size(); i = i + 5)
+  int errors = 0;
+  for(size_t i = 0; i < states.size(); i++)
   {
-    
+    if( !((int)states[i].find_first_of("\[]<>)")==-1) )
+    {
+      std::cout << "ERROR IN STATES: " << states[i] << " contains one of the illegal characters \\ [  ] < >  " << std::endl;
+      errors++;
+    }
   }
-  
   return errors;
 }
 
-
-
-
-
-
-
-int Validator::statesMultiplicityValidation()
+int Validator::statesDuplicityValidation()
 {
   int errors = 0;
   if(states.size() > 0)
@@ -67,7 +97,7 @@ int Validator::statesMultiplicityValidation()
       {
         if(states[i] == states[j])
         {
-          std::cout << "ERROR IN STATES: " << states[i] << " defined multiple times" << std::endl;
+          std::cout << "ERROR IN STATES: " << states[i] << " declared multiple times" << std::endl;
           errors++;
         }
       }
@@ -75,13 +105,33 @@ int Validator::statesMultiplicityValidation()
   }
   else
   {
-    std::cout << "ERROR IN STATES: No states defined" << std::endl;
+    std::cout << "ERROR IN STATES: No states declared" << std::endl;
     errors++;
   }
   return errors;
 }
 
-int Validator::inputAlphabetMultiplicityValidation()
+
+int Validator::inputAlphabetValidation()
+{
+  int errors = 0;
+  for(size_t i = 0; i < inputAlphabet.size(); i++)
+  {
+    if(inputAlphabet[i].length() > 1)
+    {
+      std::cout << "ERROR IN INPUT_ALPHABET: '" << inputAlphabet[i] << "' is longer than a single character" << std::endl;
+      errors++;
+    }
+    if( !((int)inputAlphabet[i].find_first_of("\[]<>)")==-1) )
+    {
+      std::cout << "ERROR IN INPUT_ALPHABET: '" << inputAlphabet[i] << "' contains one of the illegal characters \\ [  ] < >  " << std::endl;
+      errors++;
+    }
+  }
+  return errors;
+}
+
+int Validator::inputAlphabetDuplicityValidation()
 {
   int errors = 0;
   if(inputAlphabet.size() > 0)
@@ -92,21 +142,35 @@ int Validator::inputAlphabetMultiplicityValidation()
       {
         if(inputAlphabet[i] == inputAlphabet[j])
         {
-          std::cout << "ERROR IN INPUT_ALPHABET: " << inputAlphabet[i] << " defined multiple times" << std::endl;
+          std::cout << "ERROR IN INPUT_ALPHABET: '" << inputAlphabet[i] << "' declared multiple times" << std::endl;
           errors++;
         }
       }
     }
   }
-  else
+  return errors;
+}
+
+int Validator::tapeAlphabetValidation()
+{
+  int errors = 0;
+  for(size_t i = 0; i < tapeAlphabet.size(); i++)
   {
-    std::cout << "ERROR IN INPUT_ALPHABET: No alphabet defined" << std::endl;
-    errors++;
+    if(tapeAlphabet[i].length() > 1)
+    {
+      std::cout << "ERROR IN TAPE_ALPHABET: '" << inputAlphabet[i] << "' is longer than a single character" << std::endl;
+      errors++;
+    }
+    if( !((int)inputAlphabet[i].find_first_of("\[]<>)")==-1) )
+    {
+      std::cout << "ERROR IN TAPE_ALPHABET: '" << inputAlphabet[i] << "' contains one of the illegal characters \\ [  ] < >  " << std::endl;
+      errors++;
+    }
   }
   return errors;
 }
 
-int Validator::tapeAlphabetMultiplicityValidation()
+int Validator::tapeAlphabetDuplicityValidation()
 {
   int errors = 0;
   if(tapeAlphabet.size() > 0)
@@ -117,7 +181,7 @@ int Validator::tapeAlphabetMultiplicityValidation()
       {
         if(tapeAlphabet[i] == tapeAlphabet[j])
         {
-          std::cout << "ERROR IN TAPE_ALPHABET: '" << tapeAlphabet[i] << "' defined multiple times" << std::endl;
+          std::cout << "ERROR IN TAPE_ALPHABET: '" << tapeAlphabet[i] << "' declared multiple times" << std::endl;
           errors++;
         }
       }
@@ -125,7 +189,7 @@ int Validator::tapeAlphabetMultiplicityValidation()
   }
   else
   {
-    std::cout << "ERROR IN TAPE_ALPHABET: No alphabet defined" << std::endl;
+    std::cout << "ERROR IN TAPE_ALPHABET: No characters declared" << std::endl;
     errors++;
   }
   return errors;
@@ -213,7 +277,7 @@ int Validator::blankInTapeAlphabetValidation()
   return 1;
 }
 
-int Validator::finalStatesMultiplicityValidation()
+int Validator::finalStatesDuplicityValidation()
 {
   int errors = 0;
   if(finalStates.size() > 0)
@@ -224,7 +288,7 @@ int Validator::finalStatesMultiplicityValidation()
       {
         if(finalStates[i] == finalStates[j])
         {
-          std::cout << "ERROR IN FINAL_STATES: " << states[i] << " defined multiple times" << std::endl;
+          std::cout << "ERROR IN FINAL_STATES: " << states[i] << " declared multiple times" << std::endl;
           errors++;
         }
       }
@@ -257,3 +321,193 @@ int Validator::finalStatesinStatesValidation()
   return errors;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+int Validator::basicTransitionTest()
+{
+  int totalErrors = 0;
+  
+  for(std::string::size_type i = 0; i < transitionFunctionStrings.size(); )
+  {
+    int errors = 0;
+    bool cascadingError = false;
+    
+    //check that current state is in states
+    bool validCurrentState = false;
+    std::string currentState = transitionFunctionStrings[i];
+    
+    
+    for(size_t j = 0; j < states.size(); j++)
+    {
+      if (currentState == states[j])
+      {
+        validCurrentState = true;
+        j = states.size();
+      }
+    }
+    
+    //check that read state is not a final state
+    bool currentStateIsFinalState = false;
+    
+    
+    if (i < transitionFunctionStrings.size())
+    {
+      for(size_t j = 0; j < finalStates.size(); j++)
+      {
+        if (currentState == finalStates[j])
+        {
+          currentStateIsFinalState = true;
+          j = states.size();
+        }
+      }
+      i++;
+    }
+    else cascadingError = true;
+    
+    //check that read letter is in tapeAlphabet
+    bool validReadLetter = false;
+    std::string readLetter = transitionFunctionStrings[i];
+    
+    
+    if (i < transitionFunctionStrings.size())
+    {
+      for(size_t j = 0; j < tapeAlphabet.size(); j++)
+      {
+        if (readLetter == tapeAlphabet[j])
+        {
+          validReadLetter = true;
+          j = tapeAlphabet.size();
+        }
+      }
+      i++;
+    }
+    else cascadingError = true;
+    
+    //check that desination state is in states
+    bool validDestinationState = false;
+    std::string destinationState = transitionFunctionStrings[i];
+    
+    
+    if (i < transitionFunctionStrings.size())
+    {
+      for(size_t j = 0; j < transitionFunctionStrings.size(); j++)
+      {
+        if (destinationState == transitionFunctionStrings[j])
+        {
+          validDestinationState = true;
+          j = transitionFunctionStrings.size();
+        }
+      }
+      i++;
+    }
+    else cascadingError = true;
+    
+    
+    //check that write letter is in tapeAlphabet
+    bool validWriteLetter = false;
+    std::string writeLetter = transitionFunctionStrings[i];
+    
+    
+    if (i < transitionFunctionStrings.size())
+    {
+      for(size_t j = 0; j < tapeAlphabet.size(); j++)
+      {
+        if (writeLetter == tapeAlphabet[j])
+        {
+          validWriteLetter = true;
+          j = tapeAlphabet.size();
+        }
+      }
+      i++;
+    }
+    else cascadingError = true;
+    
+    
+    //check that direction is a valid direction
+    bool validDirection = false;
+    std::string direction = transitionFunctionStrings[i];
+    
+    
+    if (i < transitionFunctionStrings.size())
+    {
+      if(direction == "l" || direction == "L" || direction == "r" || direction == "R")
+      {
+        validDirection= true;
+      }
+      i++;
+    }
+    else cascadingError = true;
+    
+    
+    if(validCurrentState &&  !currentStateIsFinalState && validReadLetter && validDestinationState && validWriteLetter && validDirection)
+    {
+      transitionFunction.push_back(Transition(currentState, readLetter[0], writeLetter[0], destinationState, direction[0]));
+    }
+    else
+    {
+      std::cout << "ERROR: in transition \u03B4(" << currentState << ", " << readLetter << ") = { " << destinationState << ", " << writeLetter << ", " << direction << " }" << std::endl;
+      if(!validCurrentState)
+      {
+        std::cout << "\t" << currentState << " undeclared in states:" << std::endl;
+        errors++;
+      }
+      if(currentStateIsFinalState)
+      {
+        std::cout << "\t" << currentState << " is a final state, must not transition out of a final state" << std::endl;
+        errors++;
+      }
+      if(!validReadLetter)
+      {
+        std::cout << "\t" << validReadLetter << " undeclared in tape_alphabet:" << std::endl;
+        errors++;
+      }
+      if(!validDestinationState)
+      {
+        std::cout << "\t" << destinationState << " undeclared in states:" << std::endl;
+        errors++;
+      }
+      if(!validWriteLetter)
+      {
+        std::cout << "\t" << writeLetter << " undeclared in tape_alphabet:" << std::endl;
+        errors++;
+      }
+      if(!validDirection)
+      {
+        std::cout << "\t" << direction << " is not a valid direction, must be 'R' or 'L'" << std::endl;
+        errors++;
+      }
+      
+      std::cout << std::endl;
+      
+      if(cascadingError)
+      {
+        std::cout << "\n CRITICAL ERROR: PART(S) MISSING FROM TRANSITION(S), LIKELY CAUSED CASCADING ERRORS" << std::endl;
+        errors++;
+      }
+    }
+    
+    totalErrors += errors;
+  }
+  return totalErrors;
+}

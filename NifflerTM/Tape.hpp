@@ -11,7 +11,7 @@
 
 #include "Direction.hpp"
 
-#include <String>
+#include <string>
 
 class Tape
 {

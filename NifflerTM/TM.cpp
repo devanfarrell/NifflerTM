@@ -31,14 +31,15 @@ bool TM::load(std::string fileName)
             if (rawDefinitionFile.good())
             {
                 Parser parser;
-                Validator * validator;
+                Validator * validator = NULL;
                 validator = parser.definitionParse(&rawDefinitionFile);
+              bool validDefinition = validator->isValidDefinition();
                 
                 
-                if (validator->isValidDefinition())
+                if (validDefinition)
                 {
-                    TM_Definition * tmDefinition;
-                    Input_Strings * inputStrings;
+                    TM_Definition * tmDefinition = NULL;
+                    Input_Strings * inputStrings = NULL;
                     
                     
                     tmDefinition = validator->constructDefinition();

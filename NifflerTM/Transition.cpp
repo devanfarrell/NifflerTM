@@ -7,7 +7,7 @@
 //
 
 #include "Transition.hpp"
-#include "direction.hpp"
+#include "Direction.hpp"
 
 #include <string>
 
