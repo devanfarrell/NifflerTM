@@ -15,7 +15,10 @@ private: //attributes
     
     bool hasLoaded;
     
-    
+private: //methods
+  void commandLogic();
+  
+  
 public: //methods
     TM()
     {

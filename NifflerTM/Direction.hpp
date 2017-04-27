@@ -1,6 +1,6 @@
 #ifndef direction_h
 #define direction_h
 
-typedef char direction;
+typedef char Direction;
 
 #endif /* direction_h */

@@ -18,17 +18,6 @@ private:
     
     
 public:
-    //regular constructor
-  /*
-  Transition(std::string currentState_in, char readCharacter_in, char writeCharacter_in, std::string destinationState_in, direction move_in):
-  currentState(currentState_in),
-  readCharacter(readCharacter_in),
-  writeCharacter(writeCharacter_in),
-  destinationState(destinationState_in),
-  move(move_in)
-  {}
-   */
-  
   //copy constructor
   Transition(const std::string& currentState_in, char& readCharacter_in, char& writeCharacter_in, std::string& destinationState_in, direction& move_in):
   currentState(currentState_in),

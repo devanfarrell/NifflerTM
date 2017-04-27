@@ -42,5 +42,5 @@ void TM_Operation::truncate()
 }
 void TM_Operation::view()
 {
-    
+  tmDefinition->view_definition();
 }

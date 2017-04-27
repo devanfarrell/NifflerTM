@@ -31,7 +31,7 @@ bool Validator::isValidDefinition()
   errors += finalStatesinStatesValidation();
 
   errors += basicTransitionTest();
-  
+  //TODO errors += nonDeterministicValidation();
   
   if (!errors) valid = true;
   else valid = false;

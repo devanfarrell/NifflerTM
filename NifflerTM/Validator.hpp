@@ -81,6 +81,7 @@ private:
   int finalStatesinStatesValidation();
   
   int basicTransitionTest();
+  //TODO int nonDeterministicValidation();
   //if there is no r or l as tape characters or states, do advancedTransitionTest to remove mojar cascading errors
 };
 

@@ -12,7 +12,8 @@ bool TM::load(std::string fileName)
     
     std::ifstream rawDefinitionFile;
     std::cout << fileName << std::endl;
-    rawDefinitionFile.open(fileName);
+    std::string fileToOpen = fileName + ".def";
+    rawDefinitionFile.open(fileToOpen);
     
     if(!hasLoaded)
     {
@@ -64,8 +65,33 @@ bool TM::load(std::string fileName)
     }
     return hasLoaded;
 }
-
-void TM::initiate()
+void TM::commandLogic()
 {
-    
+  bool exit = false;
+  while( !exit )
+  {
+    std::cout << "Command: ";
+    {
+      std::string input;
+      std::cin >> input;
+      std::cout << std::endl;
+      if(input == "d" || input == "D")       tmOperation->deleteStr();
+      else if(input == "x" || input == "X")  exit = true;
+      else if(input == "h" || input == "H")  tmOperation->help();
+      else if(input == "i" || input == "I")  tmOperation->insert();
+      else if(input == "l" || input == "L")  tmOperation->list();
+      else if(input == "q" || input == "Q")  tmOperation->quit();
+      else if(input == "r" || input == "R")  tmOperation->run();
+      else if(input == "e" || input == "E")  tmOperation->set();
+      else if(input == "w" || input == "W")  tmOperation->show();
+      else if(input == "t" || input == "T")  tmOperation->truncate();
+      else if(input == "v" || input == "V")  tmOperation->view();
+      else                                   std::cout << "'" << input << "' is not a valid input" << std::endl;
+    }
+  }
 }
+
+  void TM::initiate()
+  {
+    commandLogic();
+  }
