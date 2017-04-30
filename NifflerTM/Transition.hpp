@@ -24,7 +24,8 @@ public:
     char getWriteCharacter() const;
     std::string getDestinationState() const;
     const char getDirection() const;
-    
+    void printFunction();
+  
 };
 
 

@@ -1,9 +1,11 @@
 #include "Validator.hpp"
 #include "TM_Definition.hpp"
+#include "Transition.hpp"
 
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <algorithm> // used for std::sort
 
 
 bool Validator::isValidDefinition()
@@ -33,7 +35,10 @@ bool Validator::isValidDefinition()
   errors += finalStatesinStatesValidation();
 
   errors += basicTransitionTest();
-  //TODO errors += nonDeterministicValidation();
+  errors += nonDeterministicValidation();
+  
+  errors += keywordOrderValidation();
+  errors += keywordDuplicityValidation();
   
   if (!errors) valid = true;
   else valid = false;
@@ -339,12 +344,6 @@ int Validator::finalStatesinStatesValidation()
 }
 
 
-
-
-
-
-
-
 int Validator::basicTransitionTest()
 {
   int totalErrors = 0;
@@ -511,4 +510,87 @@ int Validator::basicTransitionTest()
     totalErrors += errors;
   }
   return totalErrors;
+}
+
+int Validator::keywordOrderValidation()
+{
+  int errors = 0;
+  for(size_t i = 0; i < 7; i++)
+  {
+    if(keywordOrder[i] != (i+1))
+    {
+      errors++;
+    }
+  }
+  if(errors > 0)
+  {
+    std::cout << "ERROR: keywords are out of order must be declared in the following order:" << std::endl;
+    for(size_t i = 0; i < 7; i++)
+    {
+      std::string words[7] ={"'STATES:'","'INPUT_ALPHABET:'", "'TAPE_ALPHABET:' ", "'TRANSITION_FUNCTION:'", "'INITIAL_STATE:'", "'BLANK_CHARACTER:'", "'FINAL_STATES:'"};
+      std::cout << "\t" << words[i] << std::endl;
+    }
+  }
+    
+  return errors;
+}
+
+ int Validator::nonDeterministicValidation()
+{
+  int errors = 0;
+  if(transitionFunction.size() > 0)
+  {
+    for(std::string::size_type i = 0; i < transitionFunction.size() > 0; i++)
+    {
+      for(std::string::size_type j = i + 1; j < transitionFunction.size() > 0; j++)
+      {
+        if(transitionFunction[i].getReadCharacter() == transitionFunction[j].getReadCharacter() && transitionFunction[i].getCurrentState() == transitionFunction[j].getCurrentState())
+        {
+          std::cout << "ERROR: the following transitions have the same read characters and current states and are therefore non-deterministic." << std::endl;
+          std::cout << "\t";
+          transitionFunction[i].printFunction();
+          std::cout << "\t";
+          transitionFunction[j].printFunction();
+          errors++;
+        }
+      }
+    }
+  }
+  return errors;
+}
+
+
+int Validator::keywordDuplicityValidation()
+{
+  int errors = 0;
+  std::vector<int> keywordOrderSorted(keywordOrder);
+  std::sort(keywordOrderSorted.begin(), keywordOrderSorted.begin() + (int)keywordOrderSorted.size());
+  std::string words[7] ={"'STATES:'","'INPUT_ALPHABET:'", "'TAPE_ALPHABET:' ", "'TRANSITION_FUNCTION:'", "'INITIAL_STATE:'", "'BLANK_CHARACTER:'", "'FINAL_STATES:'"};
+  
+  int keywordCount[7] = {0, 0, 0, 0, 0, 0, 0};
+  for(size_t i = 0; i < keywordOrderSorted.size(); i++)
+  {
+    if(keywordOrderSorted[i] == 1) keywordCount[0]++;
+    else if(keywordOrderSorted[i] == 2) keywordCount[1]++;
+    else if(keywordOrderSorted[i] == 3) keywordCount[2]++;
+    else if(keywordOrderSorted[i] == 4) keywordCount[3]++;
+    else if(keywordOrderSorted[i] == 5) keywordCount[4]++;
+    else if(keywordOrderSorted[i] == 6) keywordCount[5]++;
+    else if(keywordOrderSorted[i] == 7) keywordCount[6]++;
+  }
+  for(size_t i = 0; i < keywordOrderSorted.size(); i++)
+  {
+    if (keywordCount[i] == 0) //check if keyword is ever declared
+    {
+      std::cout << "ERROR: keyword " << words[i] << " never declared" << std::endl;
+      errors++;
+    }
+    else if (keywordCount[i] > 1) //check if keyword is used more than once
+    {
+      std::cout << "ERROR: multiple instances of keyword " << words[i] << std::endl;
+      errors++;
+    }
+  }
+  
+  return errors;
 }

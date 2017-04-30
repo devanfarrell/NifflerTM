@@ -7,7 +7,7 @@ class Tape
 {
 private: //attributes
     std::string cells;
-    int currentCell;
+    long currentCell;
     
 public: //methods
     Tape();

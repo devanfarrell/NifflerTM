@@ -154,7 +154,7 @@ int Transition_Processor::getMaxCells() const
   return maxCells;
 }
 
-void Transition_Processor::setMaxCells(int posInt)
+void Transition_Processor::setMaxCells(unsigned int posInt)
 {
   maxCells = posInt;
 }
@@ -164,7 +164,7 @@ int Transition_Processor::getMaxTransitions() const
   return maxTransitions;
 }
 
-void Transition_Processor::setMaxTransitions(int posInt)
+void Transition_Processor::setMaxTransitions(unsigned int posInt)
 {
   maxTransitions = posInt;
 }
