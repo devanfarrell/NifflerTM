@@ -1,5 +1,6 @@
 #include "Validator.hpp"
 #include "TM_Definition.hpp"
+#include "Transition.hpp"
 
 #include <iostream>
 #include <string>
@@ -34,7 +35,7 @@ bool Validator::isValidDefinition()
   errors += finalStatesinStatesValidation();
 
   errors += basicTransitionTest();
-  //TODO errors += nonDeterministicValidation();
+  errors += nonDeterministicValidation();
   
   errors += keywordOrderValidation();
   errors += keywordDuplicityValidation();
@@ -533,6 +534,31 @@ int Validator::keywordOrderValidation()
     
   return errors;
 }
+
+ int Validator::nonDeterministicValidation()
+{
+  int errors = 0;
+  if(transitionFunction.size() > 0)
+  {
+    for(std::string::size_type i = 0; i < transitionFunction.size() > 0; i++)
+    {
+      for(std::string::size_type j = i + 1; j < transitionFunction.size() > 0; j++)
+      {
+        if(transitionFunction[i].getReadCharacter() == transitionFunction[j].getReadCharacter() && transitionFunction[i].getCurrentState() == transitionFunction[j].getCurrentState())
+        {
+          std::cout << "ERROR: the following transitions have the same read characters and current states and are therefore non-deterministic." << std::endl;
+          std::cout << "\t";
+          transitionFunction[i].printFunction();
+          std::cout << "\t";
+          transitionFunction[j].printFunction();
+          errors++;
+        }
+      }
+    }
+  }
+  return errors;
+}
+
 
 int Validator::keywordDuplicityValidation()
 {

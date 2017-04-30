@@ -1,7 +1,7 @@
 #include "TM.hpp"
 
 #include <iostream>
-#define FILE "/Users/devan/NifflerTM/NifflerTM/infiniteloop"
+#define FILE "/Users/devan/NifflerTM/NifflerTM/tm"
 
 int main(int argc, const char * argv[]) {
   TM tm;

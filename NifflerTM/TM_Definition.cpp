@@ -63,7 +63,7 @@ void TM_Definition::view_definition()
   //print functions
   for(size_t i = 0; i < transitionFunction.size(); i++)
   {
-    std::cout << "\u03B4( " << transitionFunction[i].getCurrentState() << ", " << transitionFunction[i].getReadCharacter() << " ) = { " << transitionFunction[i].getWriteCharacter() << ", " << transitionFunction[i].getDestinationState() << ", " << transitionFunction[i].getDirection() << " }" << std::endl;
+    transitionFunction[i].printFunction();
   }
   std::cout <<std::endl;
   
