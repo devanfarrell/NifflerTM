@@ -49,7 +49,7 @@ void Tape::appendBlank(char blankCharacter)
 }
 std::string Tape::left( int maxCellsNumber)
 {
-  int beginningCell = 0;
+  unsigned int beginningCell = 0;
   if ( 0 < currentCell - maxCellsNumber)
   {
     beginningCell = currentCell - maxCellsNumber;
@@ -66,13 +66,13 @@ std::string Tape::left( int maxCellsNumber)
 }
 std::string Tape::right( int maxCellsNumber, char blankCharacter)
 {
-  int endCell = (int)cells.length();
+  unsigned long endCell = cells.length();
   endCell--;
   while((endCell >= currentCell) && (cells[endCell]==blankCharacter))
   {
     --endCell;
   }
-  int lastCell = 0;
+  unsigned long lastCell = 0;
   if (endCell < currentCell + maxCellsNumber)
   {
     lastCell = endCell;

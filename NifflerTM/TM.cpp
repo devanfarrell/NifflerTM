@@ -78,7 +78,6 @@ void TM::commandLogic()
       std::cin.clear();
       std::cout << std::endl;
       if(input == "d" || input == "D")       tmFacade->deleteStr();
-      else if(input == "x" || input == "X")  exit = true;
       else if(input == "h" || input == "H")  tmFacade->help();
       else if(input == "i" || input == "I")  tmFacade->insert();
       else if(input == "l" || input == "L")  tmFacade->list();
@@ -88,6 +87,11 @@ void TM::commandLogic()
       else if(input == "w" || input == "W")  tmFacade->show();
       else if(input == "t" || input == "T")  tmFacade->truncate();
       else if(input == "v" || input == "V")  tmFacade->view();
+      else if(input == "x" || input == "X")
+      {
+        tmFacade->exit();
+        exit = true;
+      }
       else if(input.size() == 0) {}
       else std::cout << "'" << input << "' is not a valid input" << std::endl;
     }

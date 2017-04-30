@@ -84,6 +84,9 @@ private:
   int basicTransitionTest();
   //TODO int nonDeterministicValidation();
   //TODO optional if there is no r or l as tape characters or states, do advancedTransitionTest to reduce cascading errors
+  
+  int keywordOrderValidation();
+  int keywordDuplicityValidation();
 };
 
 #endif /* Validator_hpp */
