@@ -2,6 +2,7 @@
 #include "Parser.hpp"
 #include "TM_Definition.hpp"
 #include "Validator.hpp"
+#include "TM_Facade.hpp"
 
 #include <iostream>
 #include <string>
@@ -37,9 +38,8 @@ bool TM::load(std::string fileName)
                     
                     tmDefinition = validator->constructDefinition();
                     inputStrings = validator->constructInputStrings();
-                    validator->validateInputFile(fileName);
-                    
-                    tmOperation = new TM_Operation(validator, tmDefinition, inputStrings, fileName);
+                    validator->validateInputFile(fileName);                  
+                    tmFacade = new TM_Facade(validator, tmDefinition, inputStrings, fileName);
                     
                     
                     hasLoaded = true;
@@ -70,23 +70,26 @@ void TM::commandLogic()
   bool exit = false;
   while( !exit )
   {
+    std::cout << std::endl;
     std::cout << "Command: ";
     {
       std::string input;
-      std::cin >> input;
+      std::getline(std::cin, input);
+      std::cin.clear();
       std::cout << std::endl;
-      if(input == "d" || input == "D")       tmOperation->deleteStr();
+      if(input == "d" || input == "D")       tmFacade->deleteStr();
       else if(input == "x" || input == "X")  exit = true;
-      else if(input == "h" || input == "H")  tmOperation->help();
-      else if(input == "i" || input == "I")  tmOperation->insert();
-      else if(input == "l" || input == "L")  tmOperation->list();
-      else if(input == "q" || input == "Q")  tmOperation->quit();
-      else if(input == "r" || input == "R")  tmOperation->run();
-      else if(input == "e" || input == "E")  tmOperation->set();
-      else if(input == "w" || input == "W")  tmOperation->show();
-      else if(input == "t" || input == "T")  tmOperation->truncate();
-      else if(input == "v" || input == "V")  tmOperation->view();
-      else                                   std::cout << "'" << input << "' is not a valid input" << std::endl;
+      else if(input == "h" || input == "H")  tmFacade->help();
+      else if(input == "i" || input == "I")  tmFacade->insert();
+      else if(input == "l" || input == "L")  tmFacade->list();
+      else if(input == "q" || input == "Q")  tmFacade->quit();
+      else if(input == "r" || input == "R")  tmFacade->run();
+      else if(input == "e" || input == "E")  tmFacade->set();
+      else if(input == "w" || input == "W")  tmFacade->show();
+      else if(input == "t" || input == "T")  tmFacade->truncate();
+      else if(input == "v" || input == "V")  tmFacade->view();
+      else if(input.size() == 0) {}
+      else std::cout << "'" << input << "' is not a valid input" << std::endl;
     }
   }
 }
