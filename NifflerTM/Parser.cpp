@@ -406,7 +406,26 @@ void Parser::finalStatesParse(std::__1::ifstream * definitionFile)
 }
 void Parser::keywordOrderParse(std::__1::ifstream * definitionFile)
 {
-    
+    while(definitionFile->good())
+    {
+      std::string unmanipulatedStr;
+      std::string tempStr;
+      std::locale loc;
+      
+      (*definitionFile) >> unmanipulatedStr;
+      
+      for(std::string::size_type i = 0; i < unmanipulatedStr.length(); i++)
+      {
+        tempStr = tempStr + std::tolower(unmanipulatedStr[i], loc);
+      }
+      if(tempStr == "states:") keywordOrder.push_back(1);
+      else if(tempStr == "input_alphabet:") keywordOrder.push_back(2);
+      else if(tempStr == "tape_alphabet:") keywordOrder.push_back(3);
+      else if(tempStr == "transition_function:") keywordOrder.push_back(4);
+      else if(tempStr == "initial_state:") keywordOrder.push_back(5);
+      else if(tempStr == "blank_character:") keywordOrder.push_back(6);
+      else if(tempStr == "final_states:") keywordOrder.push_back(7);
+    }
 }
 
 

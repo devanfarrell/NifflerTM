@@ -63,7 +63,7 @@ void TM_Definition::view_definition()
   //print functions
   for(size_t i = 0; i < transitionFunction.size(); i++)
   {
-    std::cout << "\u03B4( " << transitionFunction[i].getCurrentState() << ", " << transitionFunction[i].getReadCharacter() << " ) = { " << transitionFunction[i].getWriteCharacter() << ", " << transitionFunction[i].getDestinationState() << ", " << transitionFunction[i].getDirection() << " }" << std::endl;
+    transitionFunction[i].printFunction();
   }
   std::cout <<std::endl;
   
@@ -75,11 +75,15 @@ void TM_Definition::view_definition()
   
   //print final states
   std::cout << "F\t = { " ;
-  for(std::string::size_type i = 0; i < finalStates.size() - 1; i++)
+  for(std::string::size_type i = 0; i < finalStates.size() - 1 && finalStates.size() > 0; i++)
   {
     std::cout << finalStates[i] << ", ";
   }
-  std::cout << finalStates[finalStates.size() - 1] << " }"<< std::endl << std::endl;
+  if (finalStates.size() > 0)
+  {
+    std::cout << finalStates[finalStates.size() - 1];
+  }
+  std::cout << " }"<< std::endl << std::endl;
 }
 
 bool TM_Definition::isInputLetter(char testCharacter)

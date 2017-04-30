@@ -17,7 +17,7 @@ private: //attributes
   TM_Definition * tmDefinition;
   
 private: //methods
-  bool getPosInt( int&result, std::string prompt);
+  bool getPosInt(int&result, std::string prompt);
   
 public: // methods
   //constructor and deconstructor
@@ -35,6 +35,7 @@ public: // methods
   void show();
   void truncate();
   void view();
+  void exit();
 };
 
 

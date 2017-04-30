@@ -19,7 +19,7 @@ private: // associations
     
 private:
     std::string currentState;
-    unsigned int totalTransitions;
+    unsigned long totalTransitions;
     std::string originalInputString;
     bool used;
     bool operating;
@@ -66,9 +66,9 @@ public: // methods
     void initialize(int inputStringIndex);
     void quitOperation();
     int getMaxCells() const;
-    void setMaxCells(int posInt);
+    void setMaxCells(unsigned int posInt);
     int getMaxTransitions() const;
-    void setMaxTransitions(int posInt);
+    void setMaxTransitions(unsigned int posInt);
 };
 
 

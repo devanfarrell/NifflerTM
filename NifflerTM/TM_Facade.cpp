@@ -94,6 +94,7 @@ void TM_Facade::insert()
       {
         std::cout << "String added to list!" << std::endl;
         inputStrings->appendString(input);
+        inputStrings->manipulate();
       }
       else std::cout << "Error: string is a duplicate" << std::endl;
     }
@@ -170,4 +171,8 @@ void TM_Facade::view()
   tmDefinition->view_definition();
 }
 
+void TM_Facade::exit()
+{
+  inputStrings->save(fileName);
+}
 
