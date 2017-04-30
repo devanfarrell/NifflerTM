@@ -1,5 +1,6 @@
 #include <iostream>
 #include "TM_Definition.hpp"
+#include "Transition.hpp"
 
 //begin constructor
 TM_Definition::TM_Definition(std::vector<std::string> description_in, std::vector<std::string> states_in, std::vector<std::string> inputAlphabet_in,std::vector<std::string> tapeAlphabet_in, std::vector<Transition> transitionFunction_in, std::vector<std::string> initialState_in, std::vector<std::string> blankCharacter_in, std::vector<std::string> finalStates_in):
@@ -62,7 +63,7 @@ void TM_Definition::view_definition()
   //print functions
   for(size_t i = 0; i < transitionFunction.size(); i++)
   {
-    std::cout << "\u03B4( " << transitionFunction[i].getCurrentState() << ", " << transitionFunction[i].getReadCharacter() << " ) = ( " << transitionFunction[i].getWriteCharacter() << ", " << transitionFunction[i].getDestinationState() << ", " << transitionFunction[i].getDirection() << " )" << std::endl;
+    std::cout << "\u03B4( " << transitionFunction[i].getCurrentState() << ", " << transitionFunction[i].getReadCharacter() << " ) = { " << transitionFunction[i].getWriteCharacter() << ", " << transitionFunction[i].getDestinationState() << ", " << transitionFunction[i].getDirection() << " }" << std::endl;
   }
   std::cout <<std::endl;
   
@@ -98,12 +99,12 @@ bool TM_Definition::isInputLetter(char testCharacter)
 bool TM_Definition::isFinalState(std::string currentState)
 {
   bool found = false;
-  for(size_t i = 0; i < transitionFunction.size(); i++)
+  for(size_t i = 0; i < finalStates.size(); i++)
   {
-    if(currentState == transitionFunction[i].getCurrentState())
+    if(currentState == finalStates[i])
     {
       found = true;
-       i = transitionFunction.size();
+       i = finalStates.size();
     }
   }
   return found;
@@ -119,7 +120,7 @@ char TM_Definition::getBlankCharacter() const
     return blankCharacter;
 }
 
-bool TM_Definition::search_transition( std::string sourceState, char readCharacter, std::string &destinationState, char &writeCharacter, Direction moveDirection) const
+bool TM_Definition::searchTransition( std::string sourceState, char readCharacter, std::string &destinationState, char &writeCharacter, char &moveDirection) const
 {
   bool found = false;
   for(size_t i = 0; i < transitionFunction.size(); i++)

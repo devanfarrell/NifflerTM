@@ -1,8 +1,6 @@
 #ifndef Transition_hpp
 #define Transition_hpp
 
-#include "Direction.hpp"
-
 #include <string>
 
 
@@ -14,24 +12,18 @@ private:
     char readCharacter;
     char writeCharacter;
     std::string destinationState;
-    Direction move;
+    const char move;
     
     
 public:
   //copy constructor
-  Transition(const std::string& currentState_in, char& readCharacter_in, char& writeCharacter_in, std::string& destinationState_in, Direction& move_in):
-  currentState(currentState_in),
-  readCharacter(readCharacter_in),
-  writeCharacter(writeCharacter_in),
-  destinationState(destinationState_in),
-  move(move_in)
-  {}
+  Transition(const std::string& currentState_in, char& readCharacter_in, char& writeCharacter_in, std::string& destinationState_in, char& move_in);
   
     std::string getCurrentState() const;
     char getReadCharacter() const;
     char getWriteCharacter() const;
     std::string getDestinationState() const;
-    Direction getDirection() const;
+    const char getDirection() const;
     
 };
 

@@ -1,14 +1,14 @@
 #ifndef TM_hpp
 #define TM_hpp
 
-#include "TM_Operation.hpp"
+#include "TM_Facade.hpp"
 
 #include <string>
 
 class TM
 {
 private: //associations
-    TM_Operation * tmOperation;
+    TM_Facade * tmFacade;
     
     
 private: //attributes
@@ -22,7 +22,7 @@ private: //methods
 public: //methods
     TM()
     {
-      tmOperation = NULL;
+      tmFacade = NULL;
         hasLoaded = false;
     }
     
@@ -30,7 +30,7 @@ public: //methods
     {
         if(hasLoaded)
         {
-            delete tmOperation;
+            delete tmFacade;
         }
     }
     

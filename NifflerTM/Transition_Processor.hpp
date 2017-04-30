@@ -19,18 +19,22 @@ private: // associations
     
 private:
     std::string currentState;
-    unsigned int totalNumberOfTransitions;
+    unsigned int totalTransitions;
     std::string originalInputString;
     bool used;
     bool operating;
     bool accepted;
     bool rejected;
-    unsigned int maxNumberOfCells;
-    unsigned int transitionsPerRun;
+    int maxCells;
+    int maxTransitions;
     
 private: // methods
+    void transitionUpdate(std::string desitinationState, char writeCharacter, char moveDirection);
     void viewInstantaneousDescription();
-    
+    void reject();
+    void accept();
+  
+  
     
 public: // methods
     
@@ -44,9 +48,9 @@ public: // methods
         operating = false;
         accepted = false;
         rejected = false;
-        maxNumberOfCells = 32;
-        transitionsPerRun = 1;
-        totalNumberOfTransitions = 0;
+        maxCells = 32;
+        maxTransitions = 1;
+        totalTransitions = 0;
         currentState = "";
         originalInputString = "";
     }
@@ -54,17 +58,17 @@ public: // methods
     {
         delete tape;
     }
-    
-    
-    bool isOperating();
+  
+    bool isOperating() const;
     void performTransitions();
     void showConfigurationSettings();
     void showTMStatus();
     void initialize(int inputStringIndex);
     void quitOperation();
-    void setTransitions();
-    void setMaxNumberTransitions();
-    
+    int getMaxCells() const;
+    void setMaxCells(int posInt);
+    int getMaxTransitions() const;
+    void setMaxTransitions(int posInt);
 };
 
 

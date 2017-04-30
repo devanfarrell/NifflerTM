@@ -2,6 +2,8 @@
 #include "TM_Definition.hpp"
 
 #include <iostream>
+#include <string>
+#include <fstream>
 
 
 bool Validator::isValidDefinition()
@@ -41,21 +43,45 @@ bool Validator::isValidDefinition()
 
 TM_Definition * Validator::constructDefinition()
 {
-  TM_Definition * tmDefinition = new TM_Definition(description, states,inputAlphabet, tapeAlphabet, transitionFunction, initialState, blankCharacter, finalStates);
+  tmDefinition = new TM_Definition(description, states,inputAlphabet, tapeAlphabet, transitionFunction, initialState, blankCharacter, finalStates);
   return tmDefinition;
 }
 
 Input_Strings * Validator::constructInputStrings()
 {
-    return new Input_Strings;
+    inputStrings = new Input_Strings;
+    return inputStrings;
 }
 void Validator::validateInputFile(std::string fileName)
 {
-    
+  std::ifstream inputStringFile;
+  std::string fileToOpen = fileName + ".str";
+  inputStringFile.open(fileToOpen);
+  if(inputStringFile.is_open())
+  {
+    while(inputStringFile.good())
+    {
+      std::string testLine;
+      getline(inputStringFile, testLine);
+      bool valid = testInputString(testLine);
+      if(valid) inputStrings->appendString(testLine);
+    }
+    inputStringFile.close();
+  }
 }
-void Validator::testInputString(std::string inputString)
+bool Validator::testInputString(std::string inputString)
 {
-    
+  bool valid = true; //true unless proven otherwise
+  for(size_t i =0; i < inputString.length() && valid; i++)
+  {
+    valid = tmDefinition->isInputLetter(inputString[i]); //
+  }
+  if(inputString.length() == 1 && inputString == "\\")
+     {
+       valid = true;
+     }
+  else if(inputString.length() == 0) valid = false;
+  return valid;
 }
 
 
