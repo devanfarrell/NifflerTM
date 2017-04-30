@@ -11,10 +11,10 @@ private: //attributes
     
 public: //methods
     
-    void appendString(std::string string);
+    void appendString(std::string validatedString);
     bool deleteString(int index);
     void listStrings();
-    bool isDuplicate(std::string string);
+    bool isDuplicate(std::string validatedString);
     bool isString(int index);
     std::string getString(int index);
 };

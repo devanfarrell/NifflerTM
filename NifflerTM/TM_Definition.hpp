@@ -42,7 +42,7 @@ public: //methods
     bool isFinalState(std::string currentState);
     std::string getInitialState( ) const;
     char getBlankCharacter() const;
-    bool search_transition( std::string sourceState, char readCharacter, std::string &destinationState, char &writeCharacter, char moveDirection) const;
+    bool searchTransition( std::string sourceState, char readCharacter, std::string &destinationState, char &writeCharacter, char &moveDirection) const;
     
 };
 

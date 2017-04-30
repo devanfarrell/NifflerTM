@@ -13,6 +13,7 @@ class Validator
     
 private: // associations
     Input_Strings * inputStrings;
+    TM_Definition * tmDefinition;
     
 private: // attributes
     
@@ -58,7 +59,7 @@ public: // methods
     TM_Definition * constructDefinition();
     Input_Strings * constructInputStrings();
     void validateInputFile(std::string fileName);
-    void testInputString(std::string inputString);
+    bool testInputString(std::string inputString);
   
   
   //////////validations
@@ -82,7 +83,7 @@ private:
   
   int basicTransitionTest();
   //TODO int nonDeterministicValidation();
-  //if there is no r or l as tape characters or states, do advancedTransitionTest to remove mojar cascading errors
+  //TODO optional if there is no r or l as tape characters or states, do advancedTransitionTest to reduce cascading errors
 };
 
 #endif /* Validator_hpp */
