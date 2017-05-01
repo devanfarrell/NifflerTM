@@ -39,7 +39,7 @@ private: // methods
   
 public: // methods
     
-    Validator * definitionParse(std::__1::ifstream &definitionFile);
+    Validator * definitionParse(std::ifstream &definitionFile);
 
 };
 #endif /* Parser_hpp */
