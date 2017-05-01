@@ -34,39 +34,39 @@ bool Validator::isValidDefinition()
 {
   int errors = 0;
   bool valid;
-  
-  
+
+
   errors += statesValidation();
   errors += statesDuplicityValidation();
-  
+
   errors += inputAlphabetValidation();
   errors += inputAlphabetDuplicityValidation();
-  
+
   errors += tapeAlphabetValidation();
   errors += tapeAlphabetDuplicityValidation();
-  
+
   errors += initialStateMultiplicityValidation();
   errors += blankMultiplicityValidation();
-  
+
   errors += finalStatesDuplicityValidation();
-  
+
   errors += inputInTapeValidation();
   errors += initialStateInStatesValidation();
   errors += blankNotInInputAlphabetValidation();
   errors += blankInTapeAlphabetValidation();
   errors += finalStatesinStatesValidation();
-  
+
   errors += basicTransitionTest();
   errors += nonDeterministicValidation();
-  
+
   errors += keywordOrderValidation();
   errors += keywordDuplicityValidation();
-  
+
   if (!errors)
     valid = true;
   else
     valid = false;
-  
+
   return valid;
 }
 
@@ -124,7 +124,7 @@ int Validator::statesValidation()
   int errors = 0;
   for (size_t i = 0; i < states.size(); i++)
   {
-    if (!((int)states[i].find_first_of("\[]<>)") == -1))
+    if (!((int)states[i].find_first_of("\\[]<>)") == -1))
     {
       std::cout << "ERROR IN STATES: " << states[i]
       << " contains one of the illegal characters \\ [  ] < >  " << std::endl;
@@ -172,7 +172,7 @@ int Validator::inputAlphabetValidation()
       << "' is longer than a single character" << std::endl;
       errors++;
     }
-    if (!((int)inputAlphabet[i].find_first_of("\[]<>)") == -1))
+    if (!((int)inputAlphabet[i].find_first_of("\\[]<>)") == -1))
     {
       std::cout << "ERROR IN INPUT_ALPHABET: '" << inputAlphabet[i]
       << "' contains one of the illegal characters \\ [  ] < >  " << std::endl;
@@ -214,7 +214,7 @@ int Validator::tapeAlphabetValidation()
       << "' is longer than a single character" << std::endl;
       errors++;
     }
-    if (!((int)inputAlphabet[i].find_first_of("\[]<>)") == -1))
+    if (!((int)inputAlphabet[i].find_first_of("\\[]<>)") == -1))
     {
       std::cout << "ERROR IN TAPE_ALPHABET: '" << inputAlphabet[i]
       << "' contains one of the illegal characters \\ [  ] < >  " << std::endl;
@@ -253,7 +253,7 @@ int Validator::tapeAlphabetDuplicityValidation()
 int Validator::inputInTapeValidation()
 {
   int errors = 0;
-  
+
   for (std::string::size_type i = 0; i<inputAlphabet.size()> 0;)
   {
     for (std::string::size_type j = 0; j<tapeAlphabet.size()> 0; j++)
@@ -279,6 +279,7 @@ int Validator::initialStateMultiplicityValidation()
 {
   if (initialState.size() != 1)
   {
+    std::cout << "ERROR IN INITIAL_STATE: exactly one initial state must be defined" << std::endl;
     return 1;
   }
   return 0;
@@ -286,14 +287,14 @@ int Validator::initialStateMultiplicityValidation()
 
 int Validator::initialStateInStatesValidation()
 {
-  for (std::string::size_type i = 0; i < states.size(); i++)
+  for (std::string::size_type i = 0; initialState.size() > 0 && i < states.size(); i++)
   {
     if (initialState[0] == states[i])
     {
       return 0;
     }
   }
-  
+
   std::cout << "ERROR: '" << initialState[0]
   << "' included in INITIAL_STATE: but not included in STATES:" << std::endl;
   return 1;
@@ -303,6 +304,7 @@ int Validator::blankMultiplicityValidation()
 {
   if (blankCharacter.size() != 1)
   {
+    std::cout << "ERROR IN BLANK_CHARACTER: exactly one blank character must be defined" << std::endl;
     return 1;
   }
   return 0;
@@ -311,7 +313,7 @@ int Validator::blankMultiplicityValidation()
 
 int Validator::blankNotInInputAlphabetValidation()
 {
-  for (std::string::size_type i = 0; i < states.size(); i++)
+  for (std::string::size_type i = 0; blankCharacter.size() > 0 && i < states.size(); i++)
   {
     if (blankCharacter[0] == inputAlphabet[i])
     {
@@ -325,7 +327,7 @@ int Validator::blankNotInInputAlphabetValidation()
 
 int Validator::blankInTapeAlphabetValidation()
 {
-  for (std::string::size_type i = 0; i < states.size(); i++)
+  for (std::string::size_type i = 0;blankCharacter.size() > 0 && i < states.size(); i++)
   {
     if (blankCharacter[0] == tapeAlphabet[i])
     {
@@ -361,7 +363,7 @@ int Validator::finalStatesDuplicityValidation()
 int Validator::finalStatesinStatesValidation()
 {
   int errors = 0;
-  
+
   for (std::string::size_type i = 0; i<finalStates.size()> 0;)
   {
     for (std::string::size_type j = 0; j<states.size()> 0; j++)
@@ -387,17 +389,17 @@ int Validator::finalStatesinStatesValidation()
 int Validator::basicTransitionTest()
 {
   int totalErrors = 0;
-  
+
   for (std::string::size_type i = 0; i < transitionFunctionStrings.size();)
   {
     int errors = 0;
     bool cascadingError = false;
-    
+
     // check that current state is in states
     bool validCurrentState = false;
     std::string currentState = transitionFunctionStrings[i];
-    
-    
+
+
     for (size_t j = 0; j < states.size(); j++)
     {
       if (currentState == states[j])
@@ -406,11 +408,11 @@ int Validator::basicTransitionTest()
         j = states.size();
       }
     }
-    
+
     // check that read state is not a final state
     bool currentStateIsFinalState = false;
-    
-    
+
+
     if (i < transitionFunctionStrings.size())
     {
       for (size_t j = 0; j < finalStates.size(); j++)
@@ -425,12 +427,12 @@ int Validator::basicTransitionTest()
     }
     else
       cascadingError = true;
-    
+
     // check that read letter is in tapeAlphabet
     bool validReadLetter = false;
     std::string readLetter = transitionFunctionStrings[i];
-    
-    
+
+
     if (i < transitionFunctionStrings.size())
     {
       for (size_t j = 0; j < tapeAlphabet.size(); j++)
@@ -445,12 +447,12 @@ int Validator::basicTransitionTest()
     }
     else
       cascadingError = true;
-    
+
     // check that desination state is in states
     bool validDestinationState = false;
     std::string destinationState = transitionFunctionStrings[i];
-    
-    
+
+
     if (i < transitionFunctionStrings.size())
     {
       for (size_t j = 0; j < transitionFunctionStrings.size(); j++)
@@ -465,13 +467,13 @@ int Validator::basicTransitionTest()
     }
     else
       cascadingError = true;
-    
-    
+
+
     // check that write letter is in tapeAlphabet
     bool validWriteLetter = false;
     std::string writeLetter = transitionFunctionStrings[i];
-    
-    
+
+
     if (i < transitionFunctionStrings.size())
     {
       for (size_t j = 0; j < tapeAlphabet.size(); j++)
@@ -486,13 +488,13 @@ int Validator::basicTransitionTest()
     }
     else
       cascadingError = true;
-    
-    
+
+
     // check that direction is a valid direction
     bool validDirection = false;
     std::string direction = transitionFunctionStrings[i];
-    
-    
+
+
     if (i < transitionFunctionStrings.size())
     {
       if (direction == "l" || direction == "L" || direction == "r" || direction == "R")
@@ -503,8 +505,8 @@ int Validator::basicTransitionTest()
     }
     else
       cascadingError = true;
-    
-    
+
+
     if (validCurrentState && !currentStateIsFinalState && validReadLetter
         && validDestinationState && validWriteLetter && validDirection)
     {
@@ -550,9 +552,9 @@ int Validator::basicTransitionTest()
         << std::endl;
         errors++;
       }
-      
+
       std::cout << std::endl;
-      
+
       if (cascadingError)
       {
         std::cout << "\n CRITICAL ERROR: PART(S) MISSING FROM TRANSITION(S), LIKELY CAUSED "
@@ -561,7 +563,7 @@ int Validator::basicTransitionTest()
         errors++;
       }
     }
-    
+
     totalErrors += errors;
   }
   return totalErrors;
@@ -589,7 +591,7 @@ int Validator::keywordOrderValidation()
       std::cout << "\t" << words[i] << std::endl;
     }
   }
-  
+
   return errors;
 }
 
@@ -631,7 +633,7 @@ int Validator::keywordDuplicityValidation()
             keywordOrderSorted.begin(), keywordOrderSorted.begin() + (int)keywordOrderSorted.size());
   std::string words[7] = { "'STATES:'", "'INPUT_ALPHABET:'", "'TAPE_ALPHABET:' ",
     "'TRANSITION_FUNCTION:'", "'INITIAL_STATE:'", "'BLANK_CHARACTER:'", "'FINAL_STATES:'" };
-  
+
   int keywordCount[7] = { 0, 0, 0, 0, 0, 0, 0 };
   for (size_t i = 0; i < keywordOrderSorted.size(); i++)
   {
@@ -663,6 +665,6 @@ int Validator::keywordDuplicityValidation()
       errors++;
     }
   }
-  
+
   return errors;
 }

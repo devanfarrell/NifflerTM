@@ -1,49 +1,51 @@
 .PHONY: all
 IMPL=TM.cpp
 LIBS=$(addprefix lib,$(IMPL:.cpp=.so))
-CFLAGS=-g -std=c++11 -fPIC -DTIMES=4
-CC=g++
-LDFLAGS=-lm
-debug:
-	echo $(IMPL:.cpp=.so)
-	echo ${LIBS}
-all: TM $(LIBS)
-tm.o: TM.cpp
+CFLAGS= -std=c++11 -fPIC
+OBJECTS=libTM.so libParser.so libValidator.so libTM_Definition.so libTransition.so libTM_Facade.so libTransition_Processor.so libInput_Strings.so libTape.so
+CC= g++
+LDFLAGS= -L. -lm -lTM -lParser -lValidator -lTM_Definition -lTransition -lTM_Facade -lTransition_Processor -lInput_Strings -lTape
+all: TM main.o $(OBJECTS)
+TM.o: TM.cpp TM.hpp
 	${CC} $(CFLAGS) -c $<
-libtm.so: tm.o
+libTM.so: TM.o
 		$(CC) --shared -o $@ $<
-parser.o: Parser.cpp
+Parser.o: Parser.cpp Parser.hpp
 	${CC} $(CFLAGS) -c $<
-libparser.so: parser.o
+libParser.so: Parser.o
 		$(CC) --shared -o $@ $<
-validator.o: Validator.cpp
+Validator.o: Validator.cpp Validator.hpp
 	${CC} $(CFLAGS) -c $<
-libvalidator.so: validator.o
+libValidator.so: Validator.o
 		$(CC) --shared -o $@ $<
-tmdefinition.o: TM_Definition.cpp
+TM_Definition.o: TM_Definition.cpp TM_Definition.hpp
 	${CC} $(CFLAGS) -c $<
-libtmdefinition.so: tmdefinition.o
+libTM_Definition.so: TM_Definition.o
 		$(CC) --shared -o $@ $<
-transition.o: Transition.cpp
+Transition.o: Transition.cpp Transition.hpp
 	${CC} $(CFLAGS) -c $<
-libtransition.so: transition.o
+libTransition.so: Transition.o
 		$(CC) --shared -o $@ $<
-tmfacade.o: TM_Facade.cpp
+TM_Facade.o: TM_Facade.cpp TM_Facade.hpp Input_Strings.hpp
 	${CC} $(CFLAGS) -c $<
-libtmfacade.so: tmfacade.o
+libTM_Facade.so: TM_Facade.o
 		$(CC) --shared -o $@ $<
-transitionprocessor.o: Transition_Processor.cpp
+Transition_Processor.o: Transition_Processor.cpp Transition_Processor.hpp
 	${CC} $(CFLAGS) -c $<
-libtransitionprocessor.so: transitionprocessor.o
+libTransition_Processor.so: Transition_Processor.o
 		$(CC) --shared -o $@ $<
-tape.o: Tape.cpp
+Tape.o: Tape.cpp Tape.hpp
 	${CC} $(CFLAGS) -c $<
-libtape.so: tape.o
+libTape.so: Tape.o
 		$(CC) --shared -o $@ $<
-main.o: main.cpp
+Input_Strings.o: Input_Strings.cpp Input_Strings.hpp
+		${CC} $(CFLAGS) -c $<
+libInput_Strings.so: Input_Strings.o
+	$(CC) --shared -o $@ $<
+main.o: main.cpp TM.hpp
 	${CC} $(CFLAGS) -c $<
-TM: main.o libtm.so libparser.so libvalidator.so libtmdefinition.so libtransition.so libtmfacade.so libtransitionprocessor.so libtape.so
-	$(CC) -o TM libtm.so libparser.so libvalidator.so libtmdefinition.so libtransition.so libtmfacade.so libtransitionprocessor.so libtape.so main.o -L. -lpuz $(LDFLAGS)
+TM: main.o $(OBJECTS)
+	$(CC) -o TM main.o $(OBJECTS)  $(LDFLAGS)
 clean:
 	-rm TM
 	-rm *.o
