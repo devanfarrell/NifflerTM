@@ -546,7 +546,7 @@ int Validator::keywordOrderValidation()
       {
         if(transitionFunction[i].getReadCharacter() == transitionFunction[j].getReadCharacter() && transitionFunction[i].getCurrentState() == transitionFunction[j].getCurrentState())
         {
-          std::cout << "ERROR: the following transitions have the same read characters and current states and are therefore non-deterministic." << std::endl;
+          std::cout << "ERROR: the following transitions have the same read characters and current states which defines a non-deterministic TM." << std::endl;
           std::cout << "\t";
           transitionFunction[i].printFunction();
           std::cout << "\t";
