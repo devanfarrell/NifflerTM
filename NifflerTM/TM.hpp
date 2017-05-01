@@ -7,35 +7,21 @@
 
 class TM
 {
-private: //associations
-    TM_Facade * tmFacade;
-    
-    
-private: //attributes
-    
-    bool hasLoaded;
-    
-private: //methods
+private: // associations
+  TM_Facade* tmFacade;
+  
+private: // attributes
+  bool hasLoaded;
+  
+private: // methods
   void commandLogic();
   
+public: // methods
+  TM();
+  ~TM();
   
-public: //methods
-    TM()
-    {
-      tmFacade = NULL;
-        hasLoaded = false;
-    }
-    
-    ~TM()
-    {
-        if(hasLoaded)
-        {
-            delete tmFacade;
-        }
-    }
-    
-    bool load(std::string fileName);
-    void initiate();
+  bool load(std::string fileName);
+  void initiate();
 };
 
 #endif /* TM_hpp */

@@ -9,19 +9,20 @@
 
 class TM_Facade
 {
-private: //attributes
+private: // attributes
   std::string fileName;
-  Validator * validator;
-  Transition_Processor * transitionProcessor;
-  Input_Strings * inputStrings;
-  TM_Definition * tmDefinition;
+  Validator* validator;
+  Transition_Processor* transitionProcessor;
+  Input_Strings* inputStrings;
+  TM_Definition* tmDefinition;
   
-private: //methods
-  bool getPosInt(int&result, std::string prompt);
+private: // methods
+  bool getPosInt(int& result, std::string prompt);
   
 public: // methods
-  //constructor and deconstructor
-  TM_Facade(Validator * validator, TM_Definition * tmDefinition, Input_Strings * inputStrings, std::string fileName);
+  // constructor and deconstructor
+  TM_Facade(Validator* validator, TM_Definition* tmDefinition, Input_Strings* inputStrings,
+            std::string fileName);
   ~TM_Facade();
   
   

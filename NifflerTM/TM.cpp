@@ -8,67 +8,76 @@
 #include <string>
 #include <fstream>
 
+TM::TM()
+{
+  tmFacade = NULL;
+  hasLoaded = false;
+}
+
+TM::~TM()
+{
+  if (hasLoaded)
+  {
+    delete tmFacade;
+    tmFacade = NULL;
+  }
+}
+
 bool TM::load(std::string fileName)
 {
-    
-    std::ifstream rawDefinitionFile;
-    std::cout << fileName << std::endl;
-    std::string fileToOpen = fileName + ".def";
-    rawDefinitionFile.open(fileToOpen);
-    
-    if(!hasLoaded)
+  std::ifstream rawDefinitionFile;
+  std::cout << fileName << std::endl;
+  std::string fileToOpen = fileName + ".def";
+  rawDefinitionFile.open(fileToOpen);
+  
+  if (!hasLoaded)
+  {
+    if (rawDefinitionFile.is_open())
     {
-        if(rawDefinitionFile.is_open())
+      if (rawDefinitionFile.good())
+      {
+        Parser parser;
+        Validator* validator = NULL;
+        validator = parser.definitionParse(rawDefinitionFile);
+        bool validDefinition = validator->isValidDefinition();
+        
+        if (validDefinition)
         {
-            
-            
-            if (rawDefinitionFile.good())
-            {
-                Parser parser;
-                Validator * validator = NULL;
-                validator = parser.definitionParse(rawDefinitionFile);
-              bool validDefinition = validator->isValidDefinition();
-                
-                
-                if (validDefinition)
-                {
-                    TM_Definition * tmDefinition = NULL;
-                    Input_Strings * inputStrings = NULL;
-                    
-                    
-                    tmDefinition = validator->constructDefinition();
-                    inputStrings = validator->constructInputStrings();
-                    validator->validateInputFile(fileName);                  
-                    tmFacade = new TM_Facade(validator, tmDefinition, inputStrings, fileName);
-                    
-                    
-                    hasLoaded = true;
-                }
-                else
-                {
-                    delete validator;
-                }
-            }
-            else
-            {
-                std::cout << "ERROR: File is empty or corrupted" <<  std::endl;
-                hasLoaded = false;
-            }
+          TM_Definition* tmDefinition = NULL;
+          Input_Strings* inputStrings = NULL;
+          
+          tmDefinition = validator->constructDefinition();
+          inputStrings = validator->constructInputStrings();
+          validator->validateInputFile(fileName);
+          tmFacade = new TM_Facade(validator, tmDefinition, inputStrings, fileName);
+          
+          hasLoaded = true;
         }
         else
         {
-            std::cout << "ERROR: Unable to open file '" << fileName << ".def'" << std::endl;
-            hasLoaded = false;
+          delete validator;
         }
-        
-        rawDefinitionFile.close();
+      }
+      else
+      {
+        std::cout << "ERROR: File is empty or corrupted" << std::endl;
+        hasLoaded = false;
+      }
     }
-    return hasLoaded;
+    else
+    {
+      std::cout << "ERROR: Unable to open file '" << fileName << ".def'" << std::endl;
+      hasLoaded = false;
+    }
+    
+    rawDefinitionFile.close();
+  }
+  return hasLoaded;
 }
 void TM::commandLogic()
 {
   bool exit = false;
-  while( !exit )
+  while (!exit)
   {
     std::cout << std::endl;
     std::cout << "Command: ";
@@ -77,28 +86,41 @@ void TM::commandLogic()
       std::getline(std::cin, input);
       std::cin.clear();
       std::cout << std::endl;
-      if(input == "d" || input == "D")       tmFacade->deleteStr();
-      else if(input == "h" || input == "H")  tmFacade->help();
-      else if(input == "i" || input == "I")  tmFacade->insert();
-      else if(input == "l" || input == "L")  tmFacade->list();
-      else if(input == "q" || input == "Q")  tmFacade->quit();
-      else if(input == "r" || input == "R")  tmFacade->run();
-      else if(input == "e" || input == "E")  tmFacade->set();
-      else if(input == "w" || input == "W")  tmFacade->show();
-      else if(input == "t" || input == "T")  tmFacade->truncate();
-      else if(input == "v" || input == "V")  tmFacade->view();
-      else if(input == "x" || input == "X")
+      if (input == "d" || input == "D")
+        tmFacade->deleteStr();
+      else if (input == "h" || input == "H")
+        tmFacade->help();
+      else if (input == "i" || input == "I")
+        tmFacade->insert();
+      else if (input == "l" || input == "L")
+        tmFacade->list();
+      else if (input == "q" || input == "Q")
+        tmFacade->quit();
+      else if (input == "r" || input == "R")
+        tmFacade->run();
+      else if (input == "e" || input == "E")
+        tmFacade->set();
+      else if (input == "w" || input == "W")
+        tmFacade->show();
+      else if (input == "t" || input == "T")
+        tmFacade->truncate();
+      else if (input == "v" || input == "V")
+        tmFacade->view();
+      else if (input == "x" || input == "X")
       {
         tmFacade->exit();
         exit = true;
       }
-      else if(input.size() == 0) {}
-      else std::cout << "'" << input << "' is not a valid input" << std::endl;
+      else if (input.size() == 0)
+      {
+      }
+      else
+        std::cout << "'" << input << "' is not a valid input" << std::endl;
     }
   }
 }
 
-  void TM::initiate()
-  {
-    commandLogic();
-  }
+void TM::initiate()
+{
+  commandLogic();
+}
