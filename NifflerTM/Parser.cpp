@@ -1,6 +1,6 @@
 #include "Parser.hpp"
 
-void Parser::descriptionParse(std::__1::ifstream * definitionFile)
+void Parser::descriptionParse(std::ifstream &definitionFile)
 {
     bool statesFound = false;
     
@@ -12,9 +12,9 @@ void Parser::descriptionParse(std::__1::ifstream * definitionFile)
         std::string toFind ("states:");
         
         
-        if ( definitionFile->good() )
+        if ( definitionFile.good() )
         {
-            getline (*definitionFile, unmanipulatedStr);
+            getline (definitionFile, unmanipulatedStr);
         }
         else
         {
@@ -47,7 +47,7 @@ void Parser::descriptionParse(std::__1::ifstream * definitionFile)
     }
     return;
 }
-void Parser::statesParse(std::__1::ifstream * definitionFile)
+void Parser::statesParse(std::ifstream &definitionFile)
 {
     int statesFound = 0;
     int errors = 0;
@@ -55,12 +55,12 @@ void Parser::statesParse(std::__1::ifstream * definitionFile)
     std::locale loc;
     
     
-    while(!statesFound && definitionFile->good())
+    while(!statesFound && definitionFile.good())
     {
         std::string unmanipulatedStr;
         std::string tempStr;
         
-        (*definitionFile) >> unmanipulatedStr;
+        definitionFile >> unmanipulatedStr;
         
         for(std::string::size_type i = 0; i < unmanipulatedStr.length(); i++)
         {
@@ -71,12 +71,12 @@ void Parser::statesParse(std::__1::ifstream * definitionFile)
             statesFound++;
         }
     }
-    while(!foundEndOfStates && definitionFile->good())
+    while(!foundEndOfStates && definitionFile.good())
     {
         std::string unmanipulatedStr;
         std::string tempStr;
         
-        (*definitionFile) >> unmanipulatedStr;
+        definitionFile >> unmanipulatedStr;
         
         for(std::string::size_type i = 0; i < unmanipulatedStr.length(); i++)
         {
@@ -99,21 +99,21 @@ void Parser::statesParse(std::__1::ifstream * definitionFile)
     }
     return;
 }
-void Parser::inputAlphabetParse(std::__1::ifstream * definitionFile)
+void Parser::inputAlphabetParse(std::ifstream &definitionFile)
 {
     int inputAlphabetFound = 0;
     int errors = 0;
     int foundEndOfInputAlphabet = 0;
     std::locale loc;
     
-    while(!inputAlphabetFound && definitionFile->good())
+    while(!inputAlphabetFound && definitionFile.good())
     {
         std::string unmanipulatedStr;
         std::string tempStr;
         
-        if ( definitionFile->good() )
+        if ( definitionFile.good() )
         {
-            (*definitionFile) >> unmanipulatedStr;
+            definitionFile >> unmanipulatedStr;
         }
         for(std::string::size_type i = 0; i < unmanipulatedStr.length(); i++)
         {
@@ -124,12 +124,12 @@ void Parser::inputAlphabetParse(std::__1::ifstream * definitionFile)
             inputAlphabetFound++;
         }
     }
-    while(!foundEndOfInputAlphabet && definitionFile->good())
+    while(!foundEndOfInputAlphabet && definitionFile.good())
     {
         std::string unmanipulatedStr;
         std::string tempStr;
         
-        (*definitionFile) >> unmanipulatedStr;
+        definitionFile >> unmanipulatedStr;
         
         for(std::string::size_type i = 0; i < unmanipulatedStr.length(); i++)
         {
@@ -152,19 +152,19 @@ void Parser::inputAlphabetParse(std::__1::ifstream * definitionFile)
     }
     return;
 }
-void Parser::tapeAlphabetParse(std::__1::ifstream * definitionFile)
+void Parser::tapeAlphabetParse(std::ifstream &definitionFile)
 {
     int tapeAlphabetFound = 0;
     int errors = 0;
     int foundEndOfTapeAlphabet = 0;
     std::locale loc;
     
-    while(!tapeAlphabetFound && definitionFile->good())
+    while(!tapeAlphabetFound && definitionFile.good())
     {
         std::string unmanipulatedStr;
         std::string tempStr;
         
-        (*definitionFile) >> unmanipulatedStr;
+        definitionFile >> unmanipulatedStr;
         
         for(std::string::size_type i = 0; i < unmanipulatedStr.length(); i++)
         {
@@ -175,12 +175,12 @@ void Parser::tapeAlphabetParse(std::__1::ifstream * definitionFile)
             tapeAlphabetFound++;
         }
     }
-    while(!foundEndOfTapeAlphabet && definitionFile->good())
+    while(!foundEndOfTapeAlphabet && definitionFile.good())
     {
         std::string unmanipulatedStr;
         std::string tempStr;
         
-        (*definitionFile) >> unmanipulatedStr;
+        definitionFile >> unmanipulatedStr;
         
         for(std::string::size_type i = 0; i < unmanipulatedStr.length(); i++)
         {
@@ -204,19 +204,19 @@ void Parser::tapeAlphabetParse(std::__1::ifstream * definitionFile)
     
     return;
 }
-void Parser::transitionFunctionParse(std::__1::ifstream * definitionFile)
+void Parser::transitionFunctionParse(std::ifstream &definitionFile)
 {
     int transitionFunctionsFound = 0;
     int errors = 0;
     int foundEndOfTransitionFunctions = 0;
     std::locale loc;
     
-    while(!transitionFunctionsFound && definitionFile->good())
+    while(!transitionFunctionsFound && definitionFile.good())
     {
         std::string unmanipulatedStr;
         std::string tempStr;
         
-        (*definitionFile) >> unmanipulatedStr;
+        definitionFile >> unmanipulatedStr;
         
         for(std::string::size_type i = 0; i < unmanipulatedStr.length(); i++)
         {
@@ -227,12 +227,12 @@ void Parser::transitionFunctionParse(std::__1::ifstream * definitionFile)
             transitionFunctionsFound++;
         }
     }
-    while(!foundEndOfTransitionFunctions && definitionFile->good())
+    while(!foundEndOfTransitionFunctions && definitionFile.good())
     {
         std::string unmanipulatedStr;
         std::string tempStr;
         
-        (*definitionFile) >> unmanipulatedStr;
+        definitionFile >> unmanipulatedStr;
         
         for(std::string::size_type i = 0; i < unmanipulatedStr.length(); i++)
         {
@@ -255,20 +255,20 @@ void Parser::transitionFunctionParse(std::__1::ifstream * definitionFile)
     }
     return;
 }
-void Parser::initialStateParse(std::__1::ifstream * definitionFile)
+void Parser::initialStateParse(std::ifstream &definitionFile)
 {
   int initialStateFound = 0;
   int errors = 0;
   int foundEndOfInitialState = 0;
   std::locale loc;
   
-  while(!initialStateFound && definitionFile->good())
+  while(!initialStateFound && definitionFile.good())
   {
     std::string unmanipulatedStr;
     std::string tempStr;
     
     
-    (*definitionFile) >> unmanipulatedStr;
+    definitionFile >> unmanipulatedStr;
     
     for(std::string::size_type i = 0; i < unmanipulatedStr.length(); i++)
     {
@@ -279,12 +279,12 @@ void Parser::initialStateParse(std::__1::ifstream * definitionFile)
       initialStateFound++;
     }
   }
-  while(!foundEndOfInitialState && definitionFile->good())
+  while(!foundEndOfInitialState && definitionFile.good())
   {
     std::string unmanipulatedStr;
     std::string tempStr;
     
-    (*definitionFile) >> unmanipulatedStr;
+    definitionFile >> unmanipulatedStr;
     
     for(std::string::size_type i = 0; i < unmanipulatedStr.length(); i++)
     {
@@ -306,19 +306,19 @@ void Parser::initialStateParse(std::__1::ifstream * definitionFile)
     }
   }
 }
-void Parser::blankCharacterParse(std::__1::ifstream * definitionFile)
+void Parser::blankCharacterParse(std::ifstream &definitionFile)
 {
   int blankCharacterFound = 0;
   int errors = 0;
   int foundEndOfBlankCharacter = 0;
   std::locale loc;
   
-  while(!blankCharacterFound && definitionFile->good())
+  while(!blankCharacterFound && definitionFile.good())
   {
     std::string unmanipulatedStr;
     std::string tempStr;
     
-    (*definitionFile) >> unmanipulatedStr;
+    definitionFile >> unmanipulatedStr;
     
     for(std::string::size_type i = 0; i < unmanipulatedStr.length(); i++)
     {
@@ -329,12 +329,12 @@ void Parser::blankCharacterParse(std::__1::ifstream * definitionFile)
       blankCharacterFound++;
     }
   }
-  while(!foundEndOfBlankCharacter && definitionFile->good())
+  while(!foundEndOfBlankCharacter && definitionFile.good())
   {
     std::string unmanipulatedStr;
     std::string tempStr;
     
-    (*definitionFile) >> unmanipulatedStr;
+    definitionFile >> unmanipulatedStr;
     
     for(std::string::size_type i = 0; i < unmanipulatedStr.length(); i++)
     {
@@ -357,19 +357,19 @@ void Parser::blankCharacterParse(std::__1::ifstream * definitionFile)
   }
   return;
 }
-void Parser::finalStatesParse(std::__1::ifstream * definitionFile)
+void Parser::finalStatesParse(std::ifstream &definitionFile)
 {
   int statesFound = 0;
   int foundEndOfStates = 0;
   std::locale loc;
   
   
-  while(!statesFound && definitionFile->good())
+  while(!statesFound && definitionFile.good())
   {
     std::string unmanipulatedStr;
     std::string tempStr;
     
-    (*definitionFile) >> unmanipulatedStr;
+    definitionFile >> unmanipulatedStr;
     
     for(std::string::size_type i = 0; i < unmanipulatedStr.length(); i++)
     {
@@ -380,12 +380,12 @@ void Parser::finalStatesParse(std::__1::ifstream * definitionFile)
       statesFound++;
     }
   }
-  while(!foundEndOfStates && definitionFile->good())
+  while(!foundEndOfStates && definitionFile.good())
   {
     std::string unmanipulatedStr;
     std::string tempStr;
     
-    (*definitionFile) >> unmanipulatedStr;
+    definitionFile >> unmanipulatedStr;
     
     for(std::string::size_type i = 0; i < unmanipulatedStr.length(); i++)
     {
@@ -404,15 +404,15 @@ void Parser::finalStatesParse(std::__1::ifstream * definitionFile)
   }
   return;
 }
-void Parser::keywordOrderParse(std::__1::ifstream * definitionFile)
+void Parser::keywordOrderParse(std::ifstream &definitionFile)
 {
-    while(definitionFile->good())
+    while(definitionFile.good())
     {
       std::string unmanipulatedStr;
       std::string tempStr;
       std::locale loc;
       
-      (*definitionFile) >> unmanipulatedStr;
+      definitionFile >> unmanipulatedStr;
       
       for(std::string::size_type i = 0; i < unmanipulatedStr.length(); i++)
       {
@@ -429,33 +429,33 @@ void Parser::keywordOrderParse(std::__1::ifstream * definitionFile)
 }
 
 
-Validator * Parser::definitionParse(std::__1::ifstream * definitionFile)
+Validator * Parser::definitionParse(std::ifstream &definitionFile)
 {
    
   descriptionParse(definitionFile);
-  definitionFile->clear();
-  definitionFile->seekg(0, std::ios::beg);
+  definitionFile.clear();
+  definitionFile.seekg(0, std::ios::beg);
   statesParse(definitionFile);
-  definitionFile->clear();
-  definitionFile->seekg(0, std::ios::beg);
+  definitionFile.clear();
+  definitionFile.seekg(0, std::ios::beg);
   inputAlphabetParse(definitionFile);
-  definitionFile->clear();
-  definitionFile->seekg(0, std::ios::beg);
+  definitionFile.clear();
+  definitionFile.seekg(0, std::ios::beg);
   tapeAlphabetParse(definitionFile);
-  definitionFile->clear();
-  definitionFile->seekg(0, std::ios::beg);
+  definitionFile.clear();
+  definitionFile.seekg(0, std::ios::beg);
   transitionFunctionParse(definitionFile);
-  definitionFile->clear();
-  definitionFile->seekg(0, std::ios::beg);
+  definitionFile.clear();
+  definitionFile.seekg(0, std::ios::beg);
   initialStateParse(definitionFile);
-  definitionFile->clear();
-  definitionFile->seekg(0, std::ios::beg);
+  definitionFile.clear();
+  definitionFile.seekg(0, std::ios::beg);
   blankCharacterParse(definitionFile);
-  definitionFile->clear();
-  definitionFile->seekg(0, std::ios::beg);
+  definitionFile.clear();
+  definitionFile.seekg(0, std::ios::beg);
   finalStatesParse(definitionFile);
-  definitionFile->clear();
-  definitionFile->seekg(0, std::ios::beg);
+  definitionFile.clear();
+  definitionFile.seekg(0, std::ios::beg);
   keywordOrderParse(definitionFile);
   
   

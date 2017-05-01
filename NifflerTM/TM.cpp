@@ -26,7 +26,7 @@ bool TM::load(std::string fileName)
             {
                 Parser parser;
                 Validator * validator = NULL;
-                validator = parser.definitionParse(&rawDefinitionFile);
+                validator = parser.definitionParse(rawDefinitionFile);
               bool validDefinition = validator->isValidDefinition();
                 
                 
