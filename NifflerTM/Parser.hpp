@@ -26,15 +26,15 @@ private: // attributes
     
 private: // methods
     
-    void descriptionParse(std::__1::ifstream  &definitionFile);
-    void statesParse(std::__1::ifstream  &definitionFile);
-    void inputAlphabetParse(std::__1::ifstream &definitionFile);
-    void tapeAlphabetParse(std::__1::ifstream &definitionFile);
-    void transitionFunctionParse(std::__1::ifstream &definitionFile);
-    void initialStateParse(std::__1::ifstream &definitionFile);
-    void blankCharacterParse(std::__1::ifstream &definitionFile);
-    void finalStatesParse(std::__1::ifstream &definitionFile);
-    void keywordOrderParse(std::__1::ifstream &definitionFile);
+    void descriptionParse(std::ifstream  &definitionFile);
+    void statesParse(std::ifstream  &definitionFile);
+    void inputAlphabetParse(std::ifstream &definitionFile);
+    void tapeAlphabetParse(std::ifstream &definitionFile);
+    void transitionFunctionParse(std::ifstream &definitionFile);
+    void initialStateParse(std::ifstream &definitionFile);
+    void blankCharacterParse(std::ifstream &definitionFile);
+    void finalStatesParse(std::ifstream &definitionFile);
+    void keywordOrderParse(std::ifstream &definitionFile);
 
     
 public: // methods
