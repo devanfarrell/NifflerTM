@@ -124,7 +124,7 @@ int Validator::statesValidation()
   int errors = 0;
   for (size_t i = 0; i < states.size(); i++)
   {
-    if (!((int)states[i].find_first_of("\\[]<>)") == -1))
+    if (!((int)states[i].find_first_of("\[]<>)") == -1))
     {
       std::cout << "ERROR IN STATES: " << states[i]
       << " contains one of the illegal characters \\ [  ] < >  " << std::endl;
@@ -172,7 +172,7 @@ int Validator::inputAlphabetValidation()
       << "' is longer than a single character" << std::endl;
       errors++;
     }
-    if (!((int)inputAlphabet[i].find_first_of("\\[]<>)") == -1))
+    if (!((int)inputAlphabet[i].find_first_of("\[]<>)") == -1))
     {
       std::cout << "ERROR IN INPUT_ALPHABET: '" << inputAlphabet[i]
       << "' contains one of the illegal characters \\ [  ] < >  " << std::endl;
@@ -214,7 +214,7 @@ int Validator::tapeAlphabetValidation()
       << "' is longer than a single character" << std::endl;
       errors++;
     }
-    if (!((int)inputAlphabet[i].find_first_of("\\[]<>)") == -1))
+    if (!((int)inputAlphabet[i].find_first_of("\[]<>)") == -1))
     {
       std::cout << "ERROR IN TAPE_ALPHABET: '" << inputAlphabet[i]
       << "' contains one of the illegal characters \\ [  ] < >  " << std::endl;
